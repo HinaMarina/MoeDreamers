@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://clfgrva2huq40"]
+
+[node name="PlayerAru" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+root_node = NodePath("../..")
