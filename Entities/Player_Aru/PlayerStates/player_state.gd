@@ -107,6 +107,10 @@ func complete():
 	if current_state != null:
 		current_state.complete()
 	is_complete = true
+	
+func input_to_handle(event:InputEvent):
+	if current_state!= null and current_state.is_complete == false:
+		current_state.input_to_handle(event)
 
 ###################################################################################################
 ### This section is where all functions that are called by signals are ############################
