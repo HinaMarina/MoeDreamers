@@ -1,4 +1,188 @@
-[gd_scene format=3 uid="uid://clfgrva2huq40"]
+[gd_scene load_steps=21 format=3 uid="uid://clfgrva2huq40"]
+
+[ext_resource type="Script" uid="uid://i87yeblqw7wt" path="res://Entities/Player_Aru/Player_Entities/player_animator.gd" id="1_ict5h"]
+[ext_resource type="Script" uid="uid://bnagu413ggl5i" path="res://Entities/Player_Aru/Player_States/player_state_machine.gd" id="2_0ntgp"]
+[ext_resource type="Script" uid="uid://c554dwfqoyt74" path="res://Entities/Player_Aru/Player_States/Idle/Idle.gd" id="2_i4t1f"]
+[ext_resource type="Texture2D" uid="uid://fln0os5wo8sd" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/WalkE to WalkW.png" id="2_rnkoh"]
+[ext_resource type="Texture2D" uid="uid://dr31gwvs5635b" path="res://Entities/Player_Aru/Player_States/Idle/No_girl/No_blink_Spritesheet.png" id="3_4nfdv"]
+[ext_resource type="Texture2D" uid="uid://befjdpj7q2ro6" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/WalkW to WalkE.png" id="3_yxsfr"]
+[ext_resource type="Script" uid="uid://fitb1m2hciv1" path="res://Entities/Player_Aru/Player_States/Walk/WalkControl.gd" id="4_4nfdv"]
+[ext_resource type="Texture2D" uid="uid://032l75c5cvfw" path="res://Entities/Player_Aru/Player_States/Walk/No_Girl/walkcycle_Spritesheet.png" id="5_m1nqx"]
+[ext_resource type="Script" uid="uid://c7by1gq3sa7bf" path="res://Entities/Player_Aru/Player_States/Walk/standard_walk.gd" id="5_r02cx"]
+[ext_resource type="Texture2D" uid="uid://oa6vokr16ew2" path="res://Entities/Player_Aru/Player_States/Idle/No_girl/blink_Spritesheet.png" id="7_yxsfr"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f25kn"]
+
+[sub_resource type="Animation" id="Animation_i4t1f"]
+resource_name = "Idle_E"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/State_Machine/Idle/Idle:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/State_Machine/Idle/Idle:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_m1nqx"]
+resource_name = "Idle_W"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/State_Machine/Idle/Idle:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/State_Machine/Idle/Idle:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_rnkoh"]
+resource_name = "StandardWalk_E"
+length = 0.96
+loop_mode = 1
+step = 0.16
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/State_Machine/Walk/StandardWalk/StandardWalk:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/State_Machine/Walk/StandardWalk/StandardWalk:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.32, 0.48, 0.64, 0.79999995),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_yxsfr"]
+resource_name = "StandardWalk_W"
+length = 0.96
+loop_mode = 1
+step = 0.16
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/State_Machine/Walk/StandardWalk/StandardWalk:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/State_Machine/Walk/StandardWalk/StandardWalk:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.32, 0.48, 0.64, 0.79999995),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r02cx"]
+_data = {
+&"Idle_E": SubResource("Animation_i4t1f"),
+&"Idle_W": SubResource("Animation_m1nqx"),
+&"StandardWalk_E": SubResource("Animation_rnkoh"),
+&"StandardWalk_W": SubResource("Animation_yxsfr")
+}
+
+[sub_resource type="Animation" id="Animation_qdeho"]
+resource_name = "StandardWalk_E_to_StandardWalk_W_General"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite_Transitions/StandardWalk_E_to_StandardWalk_W:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_hqqah"]
+resource_name = "StandardWalk_W_to_StandardWalk_E_General"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite_Transitions/StandardWalk_W_to_StandardWalk_E:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_srqsh"]
+_data = {
+&"StandardWalk_E_to_StandardWalk_W": SubResource("Animation_qdeho"),
+&"StandardWalk_W_to_StandardWalk_E": SubResource("Animation_hqqah")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxsfr"]
+size = Vector2(11, 24)
 
 [node name="PlayerAru" type="Node2D"]
 
@@ -6,5 +190,100 @@
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D" node_paths=PackedStringArray("sprite1", "sprite2")]
 root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_f25kn"),
+&"Player_Aru_Animations": SubResource("AnimationLibrary_r02cx"),
+&"Player_Transitions": SubResource("AnimationLibrary_srqsh")
+}
+script = ExtResource("1_ict5h")
+sprite1 = NodePath("../Sprite_Transitions/StandardWalk_E_to_StandardWalk_W")
+sprite2 = NodePath("../Sprite_Transitions/StandardWalk_W_to_StandardWalk_E")
+
+[node name="State_Machine" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("Idle_State", "Walk_State", "animation_player", "body", "camera")]
+script = ExtResource("2_0ntgp")
+Idle_State = NodePath("Idle")
+Walk_State = NodePath("Walk")
+state_name = &"Machine_Root"
+animation_player = NodePath("../AnimationPlayer")
+body = NodePath("..")
+camera = NodePath("../../Camera2D")
+
+[node name="Idle" type="Node2D" parent="CharacterBody2D/State_Machine" node_paths=PackedStringArray("state_sprite", "animation_player", "body", "camera")]
+script = ExtResource("2_i4t1f")
+no_blink_sprite = ExtResource("3_4nfdv")
+blink_sprite = ExtResource("7_yxsfr")
+state_name = &"Idle"
+state_sprite = NodePath("Idle")
+animation_player = NodePath("../../AnimationPlayer")
+body = NodePath("../..")
+camera = NodePath("../../../Camera2D")
+
+[node name="Idle" type="Sprite2D" parent="CharacterBody2D/State_Machine/Idle"]
+visible = false
+position = Vector2(0, -20)
+texture = ExtResource("3_4nfdv")
+hframes = 7
+
+[node name="Walk" type="Node2D" parent="CharacterBody2D/State_Machine" node_paths=PackedStringArray("StandardWalk", "state_sprite", "animation_player", "body", "camera")]
+script = ExtResource("4_4nfdv")
+StandardWalk = NodePath("StandardWalk")
+state_name = &"WalkControl"
+state_sprite = NodePath("StandardWalk/StandardWalk")
+animation_player = NodePath("../../AnimationPlayer")
+body = NodePath("../..")
+camera = NodePath("../../../Camera2D")
+
+[node name="StandardWalk" type="Node2D" parent="CharacterBody2D/State_Machine/Walk" node_paths=PackedStringArray("state_sprite", "animation_player", "body", "camera")]
+script = ExtResource("5_r02cx")
+state_name = &"StandardWalk"
+state_sprite = NodePath("StandardWalk")
+animation_player = NodePath("../../../AnimationPlayer")
+body = NodePath("../../..")
+camera = NodePath("../../../../Camera2D")
+
+[node name="StandardWalk" type="Sprite2D" parent="CharacterBody2D/State_Machine/Walk/StandardWalk"]
+position = Vector2(0, -20)
+texture = ExtResource("5_m1nqx")
+hframes = 6
+
+[node name="Run" type="Node2D" parent="CharacterBody2D/State_Machine/Walk"]
+
+[node name="Run" type="Sprite2D" parent="CharacterBody2D/State_Machine/Walk/Run"]
+
+[node name="WalkControl" type="Sprite2D" parent="CharacterBody2D/State_Machine/Walk"]
+
+[node name="Jump" type="Node2D" parent="CharacterBody2D/State_Machine"]
+
+[node name="Rise" type="Node2D" parent="CharacterBody2D/State_Machine/Jump"]
+
+[node name="Fall" type="Node2D" parent="CharacterBody2D/State_Machine/Jump"]
+
+[node name="SwordAttack" type="Node2D" parent="CharacterBody2D/State_Machine"]
+
+[node name="Grounded" type="Node2D" parent="CharacterBody2D/State_Machine/SwordAttack"]
+
+[node name="OnAir" type="Node2D" parent="CharacterBody2D/State_Machine/SwordAttack"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0.5, -12)
+shape = SubResource("RectangleShape2D_yxsfr")
+
+[node name="Sprite_Transitions" type="Node2D" parent="CharacterBody2D"]
+
+[node name="StandardWalk_E_to_StandardWalk_W" type="Sprite2D" parent="CharacterBody2D/Sprite_Transitions"]
+position = Vector2(0, -20)
+texture = ExtResource("2_rnkoh")
+hframes = 3
+frame = 1
+
+[node name="StandardWalk_W_to_StandardWalk_E" type="Sprite2D" parent="CharacterBody2D/Sprite_Transitions"]
+visible = false
+position = Vector2(0, -20)
+texture = ExtResource("3_yxsfr")
+hframes = 3
+frame = 1
+
+[connection signal="animation_finished" from="CharacterBody2D/AnimationPlayer" to="CharacterBody2D/AnimationPlayer" method="_on_animation_finished"]
+[connection signal="animation_started" from="CharacterBody2D/AnimationPlayer" to="CharacterBody2D/AnimationPlayer" method="_on_animation_started"]
