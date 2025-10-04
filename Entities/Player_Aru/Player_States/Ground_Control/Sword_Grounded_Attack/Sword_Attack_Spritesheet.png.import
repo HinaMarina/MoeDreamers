@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr31gwvs5635b"
-path="res://.godot/imported/No_blink_Spritesheet.png-d5e7b39ae0932ba3df60d228554ebbbd.ctex"
+uid="uid://bbeks8r44ty4k"
+path="res://.godot/imported/Sword_Attack_Spritesheet.png-00e588ed8cb765688c5987ec6c10cfab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Player_Aru/Player_States/Idle/No_girl/No_blink_Spritesheet.png"
-dest_files=["res://.godot/imported/No_blink_Spritesheet.png-d5e7b39ae0932ba3df60d228554ebbbd.ctex"]
+source_file="res://Entities/Player_Aru/Player_States/Ground_Control/Sword_Grounded_Attack/Sword_Attack_Spritesheet.png"
+dest_files=["res://.godot/imported/Sword_Attack_Spritesheet.png-00e588ed8cb765688c5987ec6c10cfab.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://032l75c5cvfw"
-path="res://.godot/imported/walkcycle_Spritesheet.png-d2a7fd76c09806db10e2cfcde634aa2d.ctex"
+uid="uid://cs2i1euvifs5i"
+path="res://.godot/imported/test.png-2537b56467807018daa8bb0aa969a500.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Player_Aru/Player_States/Walk/No_Girl/walkcycle_Spritesheet.png"
-dest_files=["res://.godot/imported/walkcycle_Spritesheet.png-d2a7fd76c09806db10e2cfcde634aa2d.ctex"]
+source_file="res://Entities/Player_Aru/Player_States/Ground_Control/Move/No_Girl/test.png"
+dest_files=["res://.godot/imported/test.png-2537b56467807018daa8bb0aa969a500.ctex"]
 
 [params]
 

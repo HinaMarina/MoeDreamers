@@ -1,6 +1,5 @@
 class_name PlayerCamera extends Camera2D
 @export var player_body:CharacterBody2D
-@export var player_state_machine:PlayerStateMachine
 
 func _process(delta: float) -> void:
 	update_position()

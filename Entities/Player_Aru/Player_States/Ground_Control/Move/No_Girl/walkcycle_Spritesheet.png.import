@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbeks8r44ty4k"
-path="res://.godot/imported/Sword_Attack_Spritesheet.png-ca1385aa2530638a4fe490a242fb5df0.ctex"
+uid="uid://032l75c5cvfw"
+path="res://.godot/imported/walkcycle_Spritesheet.png-99a4c9b7c6c66c7a02973cd7083ee000.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Player_Aru/Player_States/SwordAttack/Grounded/Sword_Attack_Spritesheet.png"
-dest_files=["res://.godot/imported/Sword_Attack_Spritesheet.png-ca1385aa2530638a4fe490a242fb5df0.ctex"]
+source_file="res://Entities/Player_Aru/Player_States/Ground_Control/Move/No_Girl/walkcycle_Spritesheet.png"
+dest_files=["res://.godot/imported/walkcycle_Spritesheet.png-99a4c9b7c6c66c7a02973cd7083ee000.ctex"]
 
 [params]
 

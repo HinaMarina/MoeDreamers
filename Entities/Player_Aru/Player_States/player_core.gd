@@ -1,0 +1,81 @@
+class_name PlayerCore extends StateCore
+var is_holding_girl:bool = false
+
+@onready var main_machine:StateMachine
+
+@export var Holding_Girl:State
+@export var Not_Holding_Girl:State
+@export var Camera:PlayerCamera
+
+var input_vector:Vector2
+var xInput:float
+var yInput:float
+
+var last_action:String
+var double_tap_time_limit:float = 0.3
+var double_tap_time:float
+
+func _ready():
+	main_machine = StateMachine.new()
+	set_instances()
+	
+	
+	if is_holding_girl:
+		main_machine.set_state(Holding_Girl,true)
+	else:
+		main_machine.set_state(Not_Holding_Girl,true)
+		
+func updates_input_vector():
+	
+	xInput = Input.get_axis("ui_left","ui_right")
+	yInput = Input.get_axis("ui_down","ui_up")
+	
+	if xInput!= 0:
+		input_vector = Vector2(xInput,yInput)
+		
+func _process(delta: float) -> void:
+	double_tap_time -= delta
+	updates_input_vector()
+		
+	
+	
+	if main_machine.current_state != null:
+		main_machine.current_state.do(delta)
+		
+func _physics_process(delta: float) -> void:
+	body.velocity.y+=2
+	body.move_and_slide()
+	if main_machine.current_state != null:
+		main_machine.current_state.physics_do(delta)
+
+func is_inputting_jump():
+	return Input.is_action_just_pressed("jump")
+	
+func is_inputting_attack():
+	return Input.is_action_just_pressed("attack")
+	
+func double_tapped_checker(event:InputEvent):
+	if event.is_action("movement_action") && event.is_pressed():
+		var action:String
+		if event.is_action("ui_right"):
+			action = "ui_right"
+		elif event.is_action("ui_left"):
+			action = "ui_left"
+		else:
+			return
+		if last_action == action && double_tap_time>=0:
+			return true
+		else:
+			last_action = action
+		double_tap_time = double_tap_time_limit
+		
+
+
+
+func hold_girl():
+	is_holding_girl = true
+	main_machine.set_state(Holding_Girl,true)
+
+func drop_girl():
+	is_holding_girl = false
+	main_machine.set_state(Not_Holding_Girl,true)

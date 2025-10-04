@@ -45,6 +45,10 @@ jump={
 "deadzone": 0.2,
 "events": []
 }
+attack={
+"deadzone": 0.2,
+"events": []
+}
 
 [rendering]
 

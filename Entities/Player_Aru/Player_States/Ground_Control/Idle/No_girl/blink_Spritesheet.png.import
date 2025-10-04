@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs2i1euvifs5i"
-path="res://.godot/imported/test.png-b2c9b8a731189a08f3a17b3f2bf175f2.ctex"
+uid="uid://oa6vokr16ew2"
+path="res://.godot/imported/blink_Spritesheet.png-021e2113fed56c014ae7dfbf36e0b5f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Player_Aru/Player_States/Walk/No_Girl/test.png"
-dest_files=["res://.godot/imported/test.png-b2c9b8a731189a08f3a17b3f2bf175f2.ctex"]
+source_file="res://Entities/Player_Aru/Player_States/Ground_Control/Idle/No_girl/blink_Spritesheet.png"
+dest_files=["res://.godot/imported/blink_Spritesheet.png-021e2113fed56c014ae7dfbf36e0b5f5.ctex"]
 
 [params]
 
