@@ -1,17 +1,37 @@
-[gd_scene load_steps=21 format=3 uid="uid://clfgrva2huq40"]
+[gd_scene load_steps=28 format=3 uid="uid://clfgrva2huq40"]
 
 [ext_resource type="Script" uid="uid://i87yeblqw7wt" path="res://Entities/Player_Aru/Player_Entities/player_animator.gd" id="1_ict5h"]
+[ext_resource type="Script" uid="uid://bh6tchiutu1w7" path="res://Entities/Player_Aru/player_camera.gd" id="1_yxsfr"]
 [ext_resource type="Script" uid="uid://bnagu413ggl5i" path="res://Entities/Player_Aru/Player_States/player_state_machine.gd" id="2_0ntgp"]
 [ext_resource type="Script" uid="uid://c554dwfqoyt74" path="res://Entities/Player_Aru/Player_States/Idle/Idle.gd" id="2_i4t1f"]
 [ext_resource type="Texture2D" uid="uid://fln0os5wo8sd" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/WalkE to WalkW.png" id="2_rnkoh"]
 [ext_resource type="Texture2D" uid="uid://dr31gwvs5635b" path="res://Entities/Player_Aru/Player_States/Idle/No_girl/No_blink_Spritesheet.png" id="3_4nfdv"]
-[ext_resource type="Texture2D" uid="uid://befjdpj7q2ro6" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/WalkW to WalkE.png" id="3_yxsfr"]
 [ext_resource type="Script" uid="uid://fitb1m2hciv1" path="res://Entities/Player_Aru/Player_States/Walk/WalkControl.gd" id="4_4nfdv"]
 [ext_resource type="Texture2D" uid="uid://032l75c5cvfw" path="res://Entities/Player_Aru/Player_States/Walk/No_Girl/walkcycle_Spritesheet.png" id="5_m1nqx"]
 [ext_resource type="Script" uid="uid://c7by1gq3sa7bf" path="res://Entities/Player_Aru/Player_States/Walk/standard_walk.gd" id="5_r02cx"]
 [ext_resource type="Texture2D" uid="uid://oa6vokr16ew2" path="res://Entities/Player_Aru/Player_States/Idle/No_girl/blink_Spritesheet.png" id="7_yxsfr"]
+[ext_resource type="Script" uid="uid://gmmw3bf7gu1w" path="res://Entities/Player_Aru/Player_States/Walk/run.gd" id="10_hqqah"]
+[ext_resource type="Texture2D" uid="uid://bhd1hkhq58d6w" path="res://Entities/Player_Aru/Player_States/Walk/No_Girl/runcycle_Spritesheet.png" id="10_qdeho"]
+
+[sub_resource type="Animation" id="Animation_rkx4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/State_Machine/Walk/Run/Run:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f25kn"]
+_data = {
+&"RESET": SubResource("Animation_rkx4m")
+}
 
 [sub_resource type="Animation" id="Animation_i4t1f"]
 resource_name = "Idle_E"
@@ -133,12 +153,108 @@ tracks/1/keys = {
 "values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_4xwy3"]
+resource_name = "Run_E"
+length = 0.72
+loop_mode = 1
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/State_Machine/Walk/Run/Run:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.35999998, 0.48, 0.59999996),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/State_Machine/Walk/Run/Run:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ad6i7"]
+resource_name = "Run_W"
+length = 0.72
+loop_mode = 1
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/State_Machine/Walk/Run/Run:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.35999998, 0.48, 0.59999996),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D/State_Machine/Walk/Run/Run:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r02cx"]
 _data = {
 &"Idle_E": SubResource("Animation_i4t1f"),
 &"Idle_W": SubResource("Animation_m1nqx"),
+&"Run_E": SubResource("Animation_4xwy3"),
+&"Run_W": SubResource("Animation_ad6i7"),
 &"StandardWalk_E": SubResource("Animation_rnkoh"),
 &"StandardWalk_W": SubResource("Animation_yxsfr")
+}
+
+[sub_resource type="Animation" id="Animation_srqsh"]
+resource_name = "Idle_E_to_StandardWalk_W"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite_Transitions/Frontal_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_ugd8j"]
+resource_name = "Idle_W_to_StandardWalk_E"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D/Sprite_Transitions/Frontal_Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
 }
 
 [sub_resource type="Animation" id="Animation_qdeho"]
@@ -148,7 +264,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/Sprite_Transitions/StandardWalk_E_to_StandardWalk_W:frame")
+tracks/0/path = NodePath("CharacterBody2D/Sprite_Transitions/Frontal_Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -165,7 +281,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/Sprite_Transitions/StandardWalk_W_to_StandardWalk_E:frame")
+tracks/0/path = NodePath("CharacterBody2D/Sprite_Transitions/Frontal_Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -177,6 +293,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_srqsh"]
 _data = {
+&"Idle_E_to_StandardWalk_W": SubResource("Animation_srqsh"),
+&"Idle_W_to_StandardWalk_E": SubResource("Animation_ugd8j"),
 &"StandardWalk_E_to_StandardWalk_W": SubResource("Animation_qdeho"),
 &"StandardWalk_W_to_StandardWalk_E": SubResource("Animation_hqqah")
 }
@@ -186,11 +304,14 @@ size = Vector2(11, 24)
 
 [node name="PlayerAru" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player_body", "player_state_machine")]
+script = ExtResource("1_yxsfr")
+player_body = NodePath("../CharacterBody2D")
+player_state_machine = NodePath("../CharacterBody2D/State_Machine")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D" node_paths=PackedStringArray("sprite1", "sprite2")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D" node_paths=PackedStringArray("sprite1")]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_f25kn"),
@@ -198,8 +319,7 @@ libraries = {
 &"Player_Transitions": SubResource("AnimationLibrary_srqsh")
 }
 script = ExtResource("1_ict5h")
-sprite1 = NodePath("../Sprite_Transitions/StandardWalk_E_to_StandardWalk_W")
-sprite2 = NodePath("../Sprite_Transitions/StandardWalk_W_to_StandardWalk_E")
+sprite1 = NodePath("../Sprite_Transitions/Frontal_Sprite")
 
 [node name="State_Machine" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("Idle_State", "Walk_State", "animation_player", "body", "camera")]
 script = ExtResource("2_0ntgp")
@@ -226,9 +346,10 @@ position = Vector2(0, -20)
 texture = ExtResource("3_4nfdv")
 hframes = 7
 
-[node name="Walk" type="Node2D" parent="CharacterBody2D/State_Machine" node_paths=PackedStringArray("StandardWalk", "state_sprite", "animation_player", "body", "camera")]
+[node name="Walk" type="Node2D" parent="CharacterBody2D/State_Machine" node_paths=PackedStringArray("StandardWalk", "RunWalk", "state_sprite", "animation_player", "body", "camera")]
 script = ExtResource("4_4nfdv")
 StandardWalk = NodePath("StandardWalk")
+RunWalk = NodePath("Run")
 state_name = &"WalkControl"
 state_sprite = NodePath("StandardWalk/StandardWalk")
 animation_player = NodePath("../../AnimationPlayer")
@@ -248,9 +369,20 @@ position = Vector2(0, -20)
 texture = ExtResource("5_m1nqx")
 hframes = 6
 
-[node name="Run" type="Node2D" parent="CharacterBody2D/State_Machine/Walk"]
+[node name="Run" type="Node2D" parent="CharacterBody2D/State_Machine/Walk" node_paths=PackedStringArray("state_sprite", "animation_player", "body", "camera")]
+script = ExtResource("10_hqqah")
+state_name = &"Run"
+state_sprite = NodePath("Run")
+animation_player = NodePath("../../../AnimationPlayer")
+body = NodePath("../../..")
+camera = NodePath("../../../../Camera2D")
 
 [node name="Run" type="Sprite2D" parent="CharacterBody2D/State_Machine/Walk/Run"]
+position = Vector2(0, -20)
+texture = ExtResource("10_qdeho")
+flip_h = true
+hframes = 6
+frame = 1
 
 [node name="WalkControl" type="Sprite2D" parent="CharacterBody2D/State_Machine/Walk"]
 
@@ -272,16 +404,10 @@ shape = SubResource("RectangleShape2D_yxsfr")
 
 [node name="Sprite_Transitions" type="Node2D" parent="CharacterBody2D"]
 
-[node name="StandardWalk_E_to_StandardWalk_W" type="Sprite2D" parent="CharacterBody2D/Sprite_Transitions"]
-position = Vector2(0, -20)
-texture = ExtResource("2_rnkoh")
-hframes = 3
-frame = 1
-
-[node name="StandardWalk_W_to_StandardWalk_E" type="Sprite2D" parent="CharacterBody2D/Sprite_Transitions"]
+[node name="Frontal_Sprite" type="Sprite2D" parent="CharacterBody2D/Sprite_Transitions"]
 visible = false
 position = Vector2(0, -20)
-texture = ExtResource("3_yxsfr")
+texture = ExtResource("2_rnkoh")
 hframes = 3
 frame = 1
 

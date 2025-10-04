@@ -12,18 +12,21 @@ var transition_sprite:Sprite2D
 var all_animated_sprites:Array[Sprite2D]
 
 
-func transition_to(new_anim:StringName,last_anim:StringName = ''):
-	print(new_anim)
+func transition_to(new_anim:StringName):
+	var library = new_anim.get_slice("/",0)
+	new_anim = new_anim.get_slice("/",1)
+	var last_anim = get_current_animation().get_slice("/",1)
 	if last_anim != '':
+		
 		for each in self.get_animation_library("Player_Transitions").get_animation_list():
 			if each == last_anim + "_to_" + new_anim:
+
 				transitioning = true
 				self.play("Player_Transitions/" + each)
-				return
+				
 	if transitioning:
 		await transition_finished
-		
-	play(new_anim)	
+	play(library+"/"+new_anim)
 
 func _ready() -> void:
 	for each in get_animation_list():
@@ -33,22 +36,8 @@ func _ready() -> void:
 		if !all_animated_sprites.has(sprite):
 			all_animated_sprites.append(sprite)
 
-func check_for_transition(from:StringName,to:StringName,input_vector:Vector2):
-	
-	for each in self.get_animation_library("Player_Transitions").get_animation_list():
-		if ( (each == from + "_to_" + to + "_E" && input_vector.x >= 0)
-		|| (each == from + "_to_" + to + "_W" && input_vector.x<=0)
-		|| each == from + "_to_" + to +"_General"
-		):
-			transitioning = true
-			self.play("Player_Transitions/" + each)
-			return
-	
-	if !transitioning:
-		transition_finished.emit()
 
-
-func _on_animation_finished(anim_name: StringName) -> void:
+func _on_animation_finished(_anim_name: StringName) -> void:
 	
 	if transitioning == true:
 		transition_finished.emit()

@@ -77,9 +77,6 @@ func set_state(new_state:PlayerState,force_reset:bool = false):
 	if new_state != current_state || force_reset:
 		if current_state != null:			
 			current_state.complete()
-			
-			animation_player.check_for_transition(current_state.state_name,new_state.state_name,input_vector)
-			await animation_player.transition_finished
 		
 		current_state = new_state
 		#current_state.initialize()
