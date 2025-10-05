@@ -4,7 +4,8 @@ extends State
 @export var Air_Control:State
 
 func select_state():
-	if core.body.is_on_floor():
+	if core.body.is_on_floor() && Air_Control.is_complete:
+		
 		_machine.set_state(Ground_Control)
 		
 	if Input.is_action_just_pressed("jump"):

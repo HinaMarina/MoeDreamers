@@ -3,7 +3,8 @@ extends State
 @export var Rise:State
 @export var Fall:State
 @export var coyote_time :=0.3
-@export var jump_buffer:= 0.3
+@export var jump_buffer:= 0.1
+@export var jump_pressed:float = 0.0
 
 var already_jumped:bool = false
 func enter():
@@ -18,21 +19,42 @@ func initialize():
 func set_jump_state():
 	if Input.is_action_just_pressed("jump") && core.body.is_on_floor():
 		if !already_jumped:
+			transition_to_rise()
+			await core.animator.transition_finished
 			_machine.set_state(Rise)
 		already_jumped = true
 	else:
 		_machine.set_state(Fall)
 
 func do(delta):
+	jump_pressed -= delta #decreases the value in the amount of time since pressed
+	
 	if lambda_time() <= coyote_time && Input.is_action_just_pressed("jump") && !already_jumped:
 		_machine.set_state(Rise)
 		already_jumped = true
+		
 	super(delta)
+	
 	if Rise.is_active() && Rise.is_complete:
 	
 		rise_to_fall_transition()
 		await core.animator.transition_finished
 		_machine.set_state(Fall)
+	
+	if Fall.is_active():
+		if Input.is_action_just_pressed("jump"):
+			jump_pressed = jump_buffer ## Resets the value when jump pressed when falling
+			
+		if core.body.is_on_floor() && jump_pressed >= 0 && core.player_core.is_inputting_jump(): 
+			## verifies if is grounded before jump_buffer amount
+			_machine.set_state(Rise)
+			return
+			
+		elif core.body.is_on_floor():
+			complete()
+		
+				
+				
 	#if _machine.current_state == null:
 		#return
 	#if _machine.current_state.is_complete:
