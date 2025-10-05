@@ -32,12 +32,13 @@ func lambda_time():
 	return (Time.get_ticks_msec() - start_time)/1000
 	
 func enter():
+	is_complete = false
 	start_time = Time.get_ticks_msec()
 	if _machine.current_state!= null:
 		_machine.current_state.enter()
 
 func initialize():
-	is_complete = false
+	pass
 
 	
 func complete():

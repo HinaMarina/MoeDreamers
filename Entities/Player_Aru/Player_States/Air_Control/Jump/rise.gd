@@ -6,6 +6,15 @@ extends State
 @onready var jump_velocity:float =(-1)*(2*jump_height)/peak_time
 @onready var jump_gravity:float = (-1)*(-2*jump_height)/(peak_time*peak_time)
 @export var max_speed_on_air:int =100
+@export var state_sprite:Sprite2D
+@export var transition_to_rise_sprite:Sprite2D
+
+func initialize():
+	super()
+	state_sprite.flip_h = core.player_core.input_vector.x < 0
+	transition_to_rise_sprite.flip_h = core.player_core.input_vector.x < 0
+	state_sprite.frame = 0
+	
 func enter():
 	super()
 	jump()
@@ -34,6 +43,10 @@ func physics_do(delta):
 
 func sets_animation():
 	if core.player_core.input_vector.x >=0:
+		core.animator.play_transition("Transitions/No_girl_Jump_Anticipation_E")
+		await core.animator.transition_finished
 		core.animator.play("Not_Holding_Girl/Jump_Rise_E")
 	else:
+		core.animator.play_transition("Transitions/No_girl_Jump_Anticipation_W")
+		await core.animator.transition_finished
 		core.animator.play("Not_Holding_Girl/Jump_Rise_W")

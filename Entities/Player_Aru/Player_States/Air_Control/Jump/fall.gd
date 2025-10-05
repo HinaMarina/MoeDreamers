@@ -6,6 +6,12 @@ extends State
 @onready var fall_gravity:float = (-1)*(-2*jump_height)/(fall_time*fall_time)
 @export var max_speed_on_air:int =100
 
+@export var state_sprite:Sprite2D
+
+func initialize():
+	super()
+	state_sprite.flip_h = core.player_core.input_vector.x < 0
+	state_sprite.frame = 3
 
 func get_gravity():
 	return fall_gravity

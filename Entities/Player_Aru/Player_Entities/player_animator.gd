@@ -5,6 +5,8 @@ var all_animated_sprites:Array[Sprite2D]
 signal transition_finished()
 var transitioning:bool=false
 
+@export var player_core:PlayerCore
+
 
 func play_transition(transition:String):
 	
@@ -31,7 +33,9 @@ func _on_animation_started(anim_name: StringName) -> void:
 			
 	var animation = get_animation(anim_name)
 	var path = animation.track_get_path(0)
-	var sprite = animator_root.get_node(path)
+	var sprite = animator_root.get_node(path) as Sprite2D
+	sprite.flip_h = player_core.input_vector.x<0 ## handle godot problems of playing anim before flip_h
+	
 	for each in all_animated_sprites:
 		if each == sprite:
 			each.visible = true
