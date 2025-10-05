@@ -8,6 +8,7 @@ var is_holding_girl:bool = false
 @export var Camera:PlayerCamera
 
 var input_vector:Vector2
+var last_xInput:float
 var xInput:float
 var yInput:float
 
@@ -15,6 +16,7 @@ var last_action:String
 var double_tap_time_limit:float = 0.3
 var double_tap_time:float
 
+signal turned_backwards()
 func _ready():
 	main_machine = StateMachine.new()
 	set_instances()
@@ -26,35 +28,43 @@ func _ready():
 		main_machine.set_state(Not_Holding_Girl,true)
 		
 func updates_input_vector():
-	
 	xInput = Input.get_axis("ui_left","ui_right")
 	yInput = Input.get_axis("ui_down","ui_up")
 	
 	if xInput!= 0:
+		last_xInput = input_vector.x
 		input_vector = Vector2(xInput,yInput)
-		
+		if sign(input_vector.x) == - sign(last_xInput):
+			turned_backwards.emit()
+
+
+	
 func _process(delta: float) -> void:
 	double_tap_time -= delta
 	updates_input_vector()
 		
 	
-	
+	if animator.transitioning:
+		await animator.transition_finished
+		
 	if main_machine.current_state != null:
 		main_machine.current_state.do(delta)
 		
 func _physics_process(delta: float) -> void:
-	body.velocity.y+=2
-	body.move_and_slide()
+	#body.velocity.y+=2
+	#body.move_and_slide()
 	if main_machine.current_state != null:
 		main_machine.current_state.physics_do(delta)
 
 func is_inputting_jump():
-	return Input.is_action_just_pressed("jump")
+	return Input.is_action_pressed("jump")
 	
 func is_inputting_attack():
 	return Input.is_action_just_pressed("attack")
 	
 func double_tapped_checker(event:InputEvent):
+	if event.is_echo():
+		return
 	if event.is_action("movement_action") && event.is_pressed():
 		var action:String
 		if event.is_action("ui_right"):

@@ -2,8 +2,21 @@ class_name PlayerAnimator extends AnimationPlayer
 
 var all_animated_sprites:Array[Sprite2D]
 @onready var animator_root:= get_node(root_node)
+signal transition_finished()
+var transitioning:bool=false
 
 
+func play_transition(transition:String):
+	
+	if transition != "":
+		transitioning = true
+		play(transition)
+		
+		await animation_finished
+		transitioning = false
+
+		transition_finished.emit()
+	
 
 func _ready() -> void:
 	for each in get_animation_list():
@@ -15,12 +28,13 @@ func _ready() -> void:
 
 
 func _on_animation_started(anim_name: StringName) -> void:
-		var animation = get_animation(anim_name)
-		var path = animation.track_get_path(0)
-		var sprite = animator_root.get_node(path)
-		for each in all_animated_sprites:
-			if each == sprite:
-				each.visible = true
-			else:
-				each.visible = false
+			
+	var animation = get_animation(anim_name)
+	var path = animation.track_get_path(0)
+	var sprite = animator_root.get_node(path)
+	for each in all_animated_sprites:
+		if each == sprite:
+			each.visible = true
+		else:
+			each.visible = false
 		

@@ -7,7 +7,7 @@ var start_time:float
 
 var all_child_states:Array[State]
 var parent_state:State
-
+signal tree_is_set()
 func _ready():
 	_machine = StateMachine.new()
 	for each in get_children():
@@ -26,6 +26,7 @@ func set_tree(new_core:StateCore):
 	for each in all_child_states:
 		each.set_core(new_core)
 		each.set_tree(new_core)
+	tree_is_set.emit()
 		
 func lambda_time():
 	return (Time.get_ticks_msec() - start_time)/1000

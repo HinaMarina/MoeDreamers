@@ -2,12 +2,14 @@ extends State
 
 @export var max_speed:=125.0
 @export var acceleration:=75.0
-
+@export var state_sprite:Sprite2D
 
 func sets_animation():
 	if core.player_core.input_vector.x > 0:
+		state_sprite.flip_h = false
 		core.animator.play("Not_Holding_Girl/Run_E")
 	else:
+		state_sprite.flip_h = true
 		core.animator.play("Not_Holding_Girl/Run_W")
 
 func do(delta):

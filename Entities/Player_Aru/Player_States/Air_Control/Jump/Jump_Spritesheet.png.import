@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvwlt2ru8sury"
-path="res://.godot/imported/Jump_Spritesheet.png-d1485d3b6c95fd66ecc9497aaa9c694e.ctex"
+path="res://.godot/imported/Jump_Spritesheet.png-9fbe2871892b5a21206be903274b9f72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Player_Aru/Player_States/Jump/No_Girl/Jump_Spritesheet.png"
-dest_files=["res://.godot/imported/Jump_Spritesheet.png-d1485d3b6c95fd66ecc9497aaa9c694e.ctex"]
+source_file="res://Entities/Player_Aru/Player_States/Air_Control/Jump/Jump_Spritesheet.png"
+dest_files=["res://.godot/imported/Jump_Spritesheet.png-9fbe2871892b5a21206be903274b9f72.ctex"]
 
 [params]
 
