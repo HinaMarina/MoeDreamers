@@ -2,21 +2,31 @@ extends State
 
 @export var Rise:State
 @export var Fall:State
+@export var coyote_time :=0.3
+@export var jump_buffer:= 0.3
 
+var already_jumped:bool = false
 func enter():
-	print('hereentered')
+	already_jumped = false
 	set_jump_state()
+	super()
+	
+func initialize():
 	super()
 	
 
 func set_jump_state():
-	
-	if Input.is_action_just_pressed("jump"):
-		_machine.set_state(Rise)
+	if Input.is_action_just_pressed("jump") && core.body.is_on_floor():
+		if !already_jumped:
+			_machine.set_state(Rise)
+		already_jumped = true
 	else:
 		_machine.set_state(Fall)
 
 func do(delta):
+	if lambda_time() <= coyote_time && Input.is_action_just_pressed("jump") && !already_jumped:
+		_machine.set_state(Rise)
+		already_jumped = true
 	super(delta)
 	if Rise.is_active() && Rise.is_complete:
 	
