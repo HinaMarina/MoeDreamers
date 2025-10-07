@@ -9,37 +9,63 @@ extends State
 @export var state_sprite:Sprite2D
 @export var transition_to_rise_sprite:Sprite2D
 
+var difference_waiting:bool = false
+@onready var min_height = jump_height/3
+@onready var full_time = peak_time
+
 func initialize():
 	super()
-	state_sprite.flip_h = core.player_core.input_vector.x < 0
+	#state_sprite.flip_h = core.player_core.input_vector.x < 0
 	transition_to_rise_sprite.flip_h = core.player_core.input_vector.x < 0
 	state_sprite.frame = 0
 	core.body.velocity.y = 0
 	
+	difference_waiting = false
+	jump_height = min_height*3
+	peak_time = full_time
+	
 func enter():
 	super()
 	jump()
+	is_jump_already_released()
 
-func _unhandled_input(_event: InputEvent) -> void:
-	
-	if Input.is_action_just_released("jump"):
-		core.body.velocity.y = 0
-		complete()
-		return
-	
-		
+#func _unhandled_input(_event: InputEvent) -> void:
+	#
+	#if Input.is_action_just_released("jump"):
+		#if lambda_time()<=peak_time/2 && !difference_waiting:
+			#difference_waiting = true
+			#var difference = (peak_time/3) - lambda_time()
+			#await get_tree().create_timer(difference).timeout
+			#
+			#complete()
+		#else:
+			#complete()
+
+
 func get_gravity():
 	return jump_gravity
 
 	
 func do(delta):
-	
-	super(delta)
-	if !Input.is_action_pressed('jump'):
-		complete()
-	if lambda_time()>peak_time && is_active():
-		complete()
+	if lambda_time()< peak_time/3:
+		is_jump_already_released()
 		
+	super(delta)
+	if lambda_time()>peak_time && is_active():
+		core.body.velocity.y = 0
+		complete()
+
+func is_jump_already_released():
+	if !Input.is_action_pressed('jump'):
+		if !difference_waiting:
+			peak_time = full_time/3
+			jump_height = min_height/3
+			difference_waiting = true
+			#var difference = (peak_time/3) - lambda_time()
+			#await get_tree().create_timer(difference).timeout
+			#core.body.velocity.y = 0
+			#complete()
+			
 func jump():
 	core.body.velocity.y = jump_velocity
 	sets_animation()

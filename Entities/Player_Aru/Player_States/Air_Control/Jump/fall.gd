@@ -16,16 +16,21 @@ func initialize():
 func get_gravity():
 	return fall_gravity
 
-
-func physics_do(delta):
+func enter():
+	super()
 	if core.body.is_on_floor():
 		complete()
+	
+func physics_do(delta):
+	
 	super(delta)
 	core.body.velocity.y += get_gravity()*delta
 	core.body.velocity.x = core.player_core.xInput*max_speed_on_air
 	core.body.move_and_slide()
 	
 func do(delta):
+	if core.body.is_on_floor():
+		complete()
 	super(delta)
 	sets_animation()
 	
@@ -34,3 +39,14 @@ func sets_animation():
 		core.animator.play("Not_Holding_Girl/Jump_Fall_E")
 	else:
 		core.animator.play("Not_Holding_Girl/Jump_Fall_W")
+
+func play_fall_transition():
+	if core.player_core.input_vector.x >=0:
+		core.animator.play_transition("Transitions/Fall_Transition_E")
+	else:
+		core.animator.play_transition("Transitions/Fall_Transition_W")
+
+func complete():
+	play_fall_transition()
+	await core.animator.transition_finished
+	super()

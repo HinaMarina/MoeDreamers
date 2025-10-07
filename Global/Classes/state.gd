@@ -7,9 +7,14 @@ var start_time:float
 
 var all_child_states:Array[State]
 var parent_state:State
+@export var clear_before_override:bool=false
+
 signal tree_is_set()
+signal state_completed()
+
 func _ready():
 	_machine = StateMachine.new()
+	_machine.machine_owner = self
 	for each in get_children():
 		if each is State:
 			all_child_states.append(each)
@@ -42,9 +47,13 @@ func initialize():
 
 	
 func complete():
-	self.is_complete = true
+			
 	if _machine.current_state != null:
 		_machine.current_state.complete()
+		await _machine.current_state.state_completed
+		
+	self.is_complete = true
+	state_completed.emit()
 	
 func do(delta):
 	#print(self,' ',_machine.current_state)
@@ -67,3 +76,6 @@ func exit():
 func is_active():
 	if parent_state != null:
 		return (parent_state._machine.current_state == self)
+		
+func clear_machine():
+	_machine.current_state = null

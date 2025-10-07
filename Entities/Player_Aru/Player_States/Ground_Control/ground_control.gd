@@ -25,6 +25,7 @@ func select_state():
 		
 	elif core.body.is_on_floor():
 		_machine.set_state(Idle)
+		Move.clear_machine()
 
 func do(delta):
 	super(delta)
@@ -35,3 +36,7 @@ func do(delta):
 func on_player_turned_backwards():
 	if is_active():
 		core.animator.play_transition("Transitions/W_to_E")
+		
+func complete():
+	if !_machine.current_state == null:
+		_machine.current_state = null

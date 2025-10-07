@@ -7,6 +7,9 @@ var is_holding_girl:bool = false
 @export var Not_Holding_Girl:State
 @export var Camera:PlayerCamera
 
+
+var can_player_move:bool= true
+
 var input_vector:Vector2
 var last_xInput:float
 var xInput:float
@@ -17,8 +20,10 @@ var double_tap_time_limit:float = 0.3
 var double_tap_time:float
 
 signal turned_backwards()
+
 func _ready():
 	main_machine = StateMachine.new()
+	main_machine.machine_owner = self
 	set_instances()
 	
 	
@@ -28,6 +33,9 @@ func _ready():
 		main_machine.set_state(Not_Holding_Girl,true)
 		
 func updates_input_vector():
+	if !can_player_move:
+		return
+	
 	xInput = Input.get_axis("ui_left","ui_right")
 	yInput = Input.get_axis("ui_down","ui_up")
 	
@@ -81,6 +89,12 @@ func double_tapped_checker(event:InputEvent):
 		
 
 
+func pause_movement():
+	can_player_move = false
+	
+func release_movement():
+	can_player_move = true
+	
 
 func hold_girl():
 	is_holding_girl = true

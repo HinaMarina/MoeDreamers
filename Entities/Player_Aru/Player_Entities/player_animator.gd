@@ -9,14 +9,13 @@ var transitioning:bool=false
 
 
 func play_transition(transition:String):
-	
 	if transition != "":
 		transitioning = true
 		play(transition)
 		
 		await animation_finished
 		transitioning = false
-
+		
 		transition_finished.emit()
 	
 
@@ -30,7 +29,6 @@ func _ready() -> void:
 
 
 func _on_animation_started(anim_name: StringName) -> void:
-			
 	var animation = get_animation(anim_name)
 	var path = animation.track_get_path(0)
 	var sprite = animator_root.get_node(path) as Sprite2D
@@ -41,4 +39,12 @@ func _on_animation_started(anim_name: StringName) -> void:
 			each.visible = true
 		else:
 			each.visible = false
-		
+
+
+#
+#func _on_animation_finished(anim_name: StringName) -> void:
+	#print(anim_name)
+	#var animation = anim_name.get_slice("/",1)
+	#if get_animation_library("Transitions").has_animation(animation):
+		#transitioning = false
+		#transition_finished.emit()

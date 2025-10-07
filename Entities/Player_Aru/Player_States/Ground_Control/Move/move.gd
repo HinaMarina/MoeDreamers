@@ -11,7 +11,6 @@ func select_state():
 		complete()
 
 func _unhandled_input(event: InputEvent) -> void:
-	
 	if core.player_core.double_tapped_checker(event):
 		_machine.set_state(Run)
 

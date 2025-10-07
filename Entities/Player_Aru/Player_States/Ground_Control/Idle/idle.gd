@@ -1,5 +1,5 @@
 extends State
-@export var friction:= 200
+@export var friction:= 25
 @export var state_sprite:Sprite2D
 
 @export var no_blink_texture:Texture2D
