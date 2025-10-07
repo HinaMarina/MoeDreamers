@@ -6,7 +6,7 @@ var is_holding_girl:bool = false
 @export var Holding_Girl:State
 @export var Not_Holding_Girl:State
 @export var Camera:PlayerCamera
-
+@export var on_edge_raycast:RayCast2D
 
 var can_player_move:bool= true
 
@@ -42,6 +42,9 @@ func updates_input_vector():
 	if xInput!= 0:
 		last_xInput = input_vector.x
 		input_vector = Vector2(xInput,yInput)
+		
+		player_gaze.target_position.x = 35*xInput
+		on_edge_raycast.position.x = 5*xInput
 		if sign(input_vector.x) == - sign(last_xInput):
 			turned_backwards.emit()
 

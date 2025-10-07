@@ -24,4 +24,4 @@ func set_state(new_state:State,override:bool=false):
 		current_state = new_state
 		current_state.initialize()
 		current_state.enter()
-		#print(machine_owner, ' is setting ', new_state)
+		print(machine_owner, ' is setting ', new_state)

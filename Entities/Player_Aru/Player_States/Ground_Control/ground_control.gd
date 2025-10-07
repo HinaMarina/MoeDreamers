@@ -2,6 +2,7 @@ extends State
 
 @export var Idle:State
 @export var Move:State
+@export var On_Edge:State
 @export var Ground_Attack:State
 
 
@@ -17,12 +18,16 @@ func _ready():
 func select_state():
 	if Ground_Attack.is_active() && !Ground_Attack.is_complete:
 		return
+	
 	if core.player_core.is_inputting_attack():
 		_machine.set_state(Ground_Attack)
 	
 	elif core.player_core.xInput != 0:
 		_machine.set_state(Move)
 		
+	elif !core.player_core.on_edge_raycast.is_colliding() && core.body.is_on_floor():
+		_machine.set_state(On_Edge)
+		return
 	elif core.body.is_on_floor():
 		_machine.set_state(Idle)
 		Move.clear_machine()

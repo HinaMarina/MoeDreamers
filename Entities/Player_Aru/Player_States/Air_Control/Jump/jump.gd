@@ -63,7 +63,7 @@ func do(delta):
 			## verifies if is grounded before jump_buffer amount
 			transition_to_rise()
 			await core.animator.transition_finished
-			print('hellyea')
+
 			_machine.set_state(Rise)
 			return
 			
