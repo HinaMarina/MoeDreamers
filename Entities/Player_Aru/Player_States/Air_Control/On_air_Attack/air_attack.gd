@@ -9,12 +9,13 @@ extends State
 @export var state_sprite:Sprite2D
 
 func enter():
-	core.body.velocity.y = 0.0
+	if core.body.velocity.y<0:
+		core.body.velocity.y = 0.0
 	core.player_core.pause_movement()
 	super()
 	set_animation()
-	#await core.animator.animation_finished
-	#complete()
+	await core.animator.animation_finished
+	complete()
 
 func get_gravity():
 	return fall_gravity
@@ -39,20 +40,12 @@ func initialize():
 	
 func set_animation():
 	if core.player_core.input_vector.x >= 0:
-		core.animator.play("Not_Holding_Girl/On_Air_Attack_E")
+		core.animator.play_after_transition("Not_Holding_Girl/On_Air_Attack_E")
 	else:
-		core.animator.play("Not_Holding_Girl/On_Air_Attack_W")
+		core.animator.play_after_transition("Not_Holding_Girl/On_Air_Attack_W")
 
-func play_recover_transition():
-	if core.player_core.input_vector.x >=0:
-		core.animator.play_transition("Transitions/Fall_Transition_E")
-	else:
-		core.animator.play_transition("Transitions/Fall_Transition_W")
+
 
 func complete():
-	if core.body.is_on_floor():
-		play_recover_transition()
-		await core.animator.transition_finished
-	
 	super()
 	core.player_core.release_movement()

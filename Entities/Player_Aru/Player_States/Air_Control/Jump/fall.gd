@@ -5,7 +5,7 @@ extends State
 
 @onready var fall_gravity:float = (-1)*(-2*jump_height)/(fall_time*fall_time)
 @export var max_speed_on_air:int =100
-
+@export var max_fall_speed:int = 400
 @export var state_sprite:Sprite2D
 
 func initialize():
@@ -25,6 +25,7 @@ func physics_do(delta):
 	
 	super(delta)
 	core.body.velocity.y += get_gravity()*delta
+	core.body.velocity.y = clamp(core.body.velocity.y,-max_fall_speed,max_fall_speed)
 	core.body.velocity.x = core.player_core.xInput*max_speed_on_air
 	core.body.move_and_slide()
 	
@@ -36,9 +37,9 @@ func do(delta):
 	
 func sets_animation():
 	if core.player_core.input_vector.x >=0:
-		core.animator.play("Not_Holding_Girl/Jump_Fall_E")
+		core.animator.play_after_transition("Not_Holding_Girl/Jump_Fall_E")
 	else:
-		core.animator.play("Not_Holding_Girl/Jump_Fall_W")
+		core.animator.play_after_transition("Not_Holding_Girl/Jump_Fall_W")
 
 func play_fall_transition():
 	if core.player_core.input_vector.x >=0:

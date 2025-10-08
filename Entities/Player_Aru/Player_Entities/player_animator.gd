@@ -7,17 +7,23 @@ var transitioning:bool=false
 
 @export var player_core:PlayerCore
 
+var transitions_playlist:Array[String]
 
 func play_transition(transition:String):
-	if transition != "":
-		transitioning = true
-		play(transition)
-		
-		await animation_finished
-		transitioning = false
-		
-		transition_finished.emit()
 	
+	
+	if transition == get_current_animation():
+		return
+	transitions_playlist.append(transition)
+		
+		
+		
+	
+		
+func play_after_transition(anim_name:String):
+	if transitioning:
+		await transition_finished
+	play(anim_name)
 
 func _ready() -> void:
 	for each in get_animation_list():
@@ -29,6 +35,7 @@ func _ready() -> void:
 
 
 func _on_animation_started(anim_name: StringName) -> void:
+	#print(anim_name + ' started')
 	var animation = get_animation(anim_name)
 	var path = animation.track_get_path(0)
 	var sprite = animator_root.get_node(path) as Sprite2D
@@ -43,8 +50,20 @@ func _on_animation_started(anim_name: StringName) -> void:
 
 #
 #func _on_animation_finished(anim_name: StringName) -> void:
-	#print(anim_name)
+	#print(anim_name, ' finished')
 	#var animation = anim_name.get_slice("/",1)
 	#if get_animation_library("Transitions").has_animation(animation):
 		#transitioning = false
 		#transition_finished.emit()
+
+func _process(delta: float) -> void:
+	if !transitions_playlist.is_empty():
+		transitioning = true
+		for each in transitions_playlist:
+			play(each)
+			await animation_finished
+			transitions_playlist.erase(each)
+			
+	if transitions_playlist.is_empty() && transitioning:
+		transitioning = false
+		transition_finished.emit()

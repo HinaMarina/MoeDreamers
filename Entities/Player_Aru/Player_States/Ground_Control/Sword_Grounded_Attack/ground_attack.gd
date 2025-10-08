@@ -16,9 +16,9 @@ func initialize():
 	
 func set_animation():
 	if core.player_core.input_vector.x >= 0:
-		core.animator.play("Not_Holding_Girl/Sword_Grounded_Attack1_E")
+		core.animator.play_after_transition("Not_Holding_Girl/Sword_Grounded_Attack1_E")
 	else:
-		core.animator.play("Not_Holding_Girl/Sword_Grounded_Attack1_W")
+		core.animator.play_after_transition("Not_Holding_Girl/Sword_Grounded_Attack1_W")
 
 func play_recover_transition():
 	if core.player_core.input_vector.x >=0:

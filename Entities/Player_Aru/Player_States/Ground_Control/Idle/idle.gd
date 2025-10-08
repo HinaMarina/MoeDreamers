@@ -23,10 +23,10 @@ func physics_do(delta):
 func sets_animation_direction():
 	if core.player_core.input_vector.x>=0:
 		state_sprite.flip_h = false
-		core.animator.play("Not_Holding_Girl/Idle_E")
+		core.animator.play_after_transition("Not_Holding_Girl/Idle_E")
 	else:
 		state_sprite.flip_h = true
-		core.animator.play("Not_Holding_Girl/Idle_W")
+		core.animator.play_after_transition("Not_Holding_Girl/Idle_W")
 
 func blink_update():
 	if int(lambda_time())%3 == 0:

@@ -37,10 +37,12 @@ func lambda_time():
 	return (Time.get_ticks_msec() - start_time)/1000
 	
 func enter():
+
+	#print(self)
 	is_complete = false
 	start_time = Time.get_ticks_msec()
-	if _machine.current_state!= null:
-		_machine.current_state.enter()
+	#if _machine.current_state!= null:
+		#_machine.current_state.enter()
 
 func initialize():
 	pass
@@ -79,3 +81,8 @@ func is_active():
 		
 func clear_machine():
 	_machine.current_state = null
+
+#
+#func _process(delta: float) -> void:
+	#print(_machine.current_state)
+	#pass

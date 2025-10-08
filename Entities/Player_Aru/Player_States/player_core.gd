@@ -51,6 +51,8 @@ func updates_input_vector():
 
 	
 func _process(delta: float) -> void:
+	#print(body.velocity)
+	#print(animator.transitioning)
 	double_tap_time -= delta
 	updates_input_vector()
 		
@@ -63,7 +65,8 @@ func _process(delta: float) -> void:
 		
 func _physics_process(delta: float) -> void:
 	#body.velocity.y+=2
-	#body.move_and_slide()
+	#if can_player_move:
+		#body.move_and_slide()
 	if main_machine.current_state != null:
 		main_machine.current_state.physics_do(delta)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://clfgrva2huq40"]
+[gd_scene load_steps=62 format=3 uid="uid://clfgrva2huq40"]
 
 [ext_resource type="Script" uid="uid://i87yeblqw7wt" path="res://Entities/Player_Aru/Player_Entities/player_animator.gd" id="1_ict5h"]
 [ext_resource type="Script" uid="uid://bh6tchiutu1w7" path="res://Entities/Player_Aru/player_camera.gd" id="1_yxsfr"]
@@ -14,10 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://032l75c5cvfw" path="res://Entities/Player_Aru/Player_States/Ground_Control/Move/No_Girl/walkcycle_Spritesheet.png" id="11_qdeho"]
 [ext_resource type="Script" uid="uid://cvuit5hodwmus" path="res://Entities/Player_Aru/Player_States/Ground_Control/Sword_Grounded_Attack/ground_attack.gd" id="12_qkxge"]
 [ext_resource type="Script" uid="uid://b2xaj4by7geq4" path="res://Entities/Player_Aru/Player_States/Air_Control/air_control.gd" id="12_rkx4m"]
-[ext_resource type="Script" uid="uid://0i5beqcnu1ru" path="res://Entities/Player_Aru/Player_States/Air_Control/Jump/jump.gd" id="13_4xwy3"]
 [ext_resource type="Script" uid="uid://but1b7sqhqs1r" path="res://Entities/Player_Aru/Player_States/Ground_Control/On_Edge/on_edge.gd" id="13_05ptj"]
 [ext_resource type="Texture2D" uid="uid://bhd1hkhq58d6w" path="res://Entities/Player_Aru/Player_States/Ground_Control/Move/No_Girl/runcycle_Spritesheet.png" id="13_srqsh"]
-[ext_resource type="Script" uid="uid://bidvovtjxpxwb" path="res://Entities/Player_Aru/Player_States/Air_Control/Jump/rise.gd" id="14_ad6i7"]
+[ext_resource type="Script" uid="uid://bidvovtjxpxwb" path="res://Entities/Player_Aru/Player_States/Air_Control/Jump/jump.gd" id="14_ad6i7"]
 [ext_resource type="Texture2D" uid="uid://befjdpj7q2ro6" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/WalkW to WalkE.png" id="14_ugd8j"]
 [ext_resource type="Script" uid="uid://b4vhibhcvddds" path="res://Entities/Player_Aru/Player_States/Air_Control/Jump/fall.gd" id="15_1lg0y"]
 [ext_resource type="Texture2D" uid="uid://dvwlt2ru8sury" path="res://Entities/Player_Aru/Player_States/Air_Control/Jump/Jump_Spritesheet.png" id="17_dcg5s"]
@@ -167,7 +166,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Sprites/Transitions/Transition_To_Rise:frame")
+tracks/11/path = NodePath("Sprites/Transitions/Transition_To_Jump:frame")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -179,7 +178,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Sprites/Transitions/Transition_To_Rise:flip_h")
+tracks/12/path = NodePath("Sprites/Transitions/Transition_To_Jump:flip_h")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -494,6 +493,122 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_q7k2s"]
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/No_Girl-OnAirAttack1:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/No_Girl-OnAirAttack1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_cout2"]
+resource_name = "On_Air_Attack_W"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/No_Girl-OnAirAttack1:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/No_Girl-OnAirAttack1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_u85lk"]
+length = 0.72
+loop_mode = 1
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/No_Girl-On_Edge:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/No_Girl-On_Edge:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.35999998, 0.48, 0.59999996),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_yax3o"]
+resource_name = "On_Edge_W"
+length = 0.72
+loop_mode = 1
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/No_Girl-On_Edge:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/No_Girl-On_Edge:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.35999998, 0.48, 0.59999996),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="Animation" id="Animation_srqsh"]
 resource_name = "Run_E"
 length = 0.72
@@ -672,122 +787,6 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_u85lk"]
-length = 0.72
-loop_mode = 1
-step = 0.12
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Animations/No_Girl-On_Edge:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Animations/No_Girl-On_Edge:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.24, 0.35999998, 0.48, 0.59999996),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_yax3o"]
-resource_name = "On_Edge_W"
-length = 0.72
-loop_mode = 1
-step = 0.12
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Animations/No_Girl-On_Edge:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Animations/No_Girl-On_Edge:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.24, 0.35999998, 0.48, 0.59999996),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_q7k2s"]
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Animations/No_Girl-OnAirAttack1:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Animations/No_Girl-OnAirAttack1:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
-}
-
-[sub_resource type="Animation" id="Animation_cout2"]
-resource_name = "On_Air_Attack_W"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Animations/No_Girl-OnAirAttack1:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Animations/No_Girl-OnAirAttack1:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qdeho"]
 _data = {
 &"Idle_E": SubResource("Animation_yxsfr"),
@@ -926,7 +925,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Transitions/Transition_To_Rise:frame")
+tracks/0/path = NodePath("Sprites/Transitions/Transition_To_Jump:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -938,7 +937,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Transitions/Transition_To_Rise:flip_h")
+tracks/1/path = NodePath("Sprites/Transitions/Transition_To_Jump:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -954,7 +953,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Transitions/Transition_To_Rise:frame")
+tracks/0/path = NodePath("Sprites/Transitions/Transition_To_Jump:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -966,7 +965,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Transitions/Transition_To_Rise:flip_h")
+tracks/1/path = NodePath("Sprites/Transitions/Transition_To_Jump:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1194,35 +1193,30 @@ state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-SwordGroundedAtt
 [node name="On_Edge" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Ground_Control"]
 script = ExtResource("13_05ptj")
 
-[node name="Air_Control" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl" node_paths=PackedStringArray("Jump", "Air_Attack")]
+[node name="Air_Control" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl" node_paths=PackedStringArray("Air_Attack", "Jump", "Fall")]
 script = ExtResource("12_rkx4m")
-Jump = NodePath("Jump")
 Air_Attack = NodePath("Air_Attack")
-
-[node name="Jump" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control" node_paths=PackedStringArray("Rise", "Fall")]
-script = ExtResource("13_4xwy3")
-Rise = NodePath("Rise")
+Jump = NodePath("Jump")
 Fall = NodePath("Fall")
 clear_before_override = true
-
-[node name="Rise" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control/Jump" node_paths=PackedStringArray("state_sprite", "transition_to_rise_sprite")]
-script = ExtResource("14_ad6i7")
-jump_height = 56.0
-peak_time = 0.5
-state_sprite = NodePath("../../../../../Sprites/Animations/No_Girl-Jump")
-transition_to_rise_sprite = NodePath("../../../../../Sprites/Transitions/Transition_To_Rise")
-
-[node name="Fall" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control/Jump" node_paths=PackedStringArray("state_sprite")]
-script = ExtResource("15_1lg0y")
-jump_height = 56.0
-fall_time = 0.4
-state_sprite = NodePath("../../../../../Sprites/Animations/No_Girl-Jump")
 
 [node name="Air_Attack" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("18_3kxtt")
 jump_height = 56.0
 fall_time = 0.6
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-OnAirAttack1")
+
+[node name="Jump" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
+script = ExtResource("14_ad6i7")
+jump_height = 56.0
+peak_time = 0.5
+state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-Jump")
+
+[node name="Fall" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
+script = ExtResource("15_1lg0y")
+jump_height = 56.0
+fall_time = 0.4
+state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-Jump")
 
 [node name="Holding_Girl" type="Node" parent="CharacterBody2D/Player_Core"]
 
@@ -1271,7 +1265,7 @@ texture = ExtResource("22_lb5uc")
 hframes = 6
 
 [node name="No_Girl-OnAirAttack1" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations"]
-position = Vector2(0, -23)
+position = Vector2(0, -24)
 texture = ExtResource("23_xymr3")
 hframes = 5
 
@@ -1283,7 +1277,7 @@ position = Vector2(0, -20)
 texture = ExtResource("14_ugd8j")
 hframes = 3
 
-[node name="Transition_To_Rise" type="Sprite2D" parent="CharacterBody2D/Sprites/Transitions"]
+[node name="Transition_To_Jump" type="Sprite2D" parent="CharacterBody2D/Sprites/Transitions"]
 visible = false
 position = Vector2(0, -18)
 texture = ExtResource("22_aj0c6")

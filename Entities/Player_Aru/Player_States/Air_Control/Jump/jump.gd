@@ -1,99 +1,96 @@
 extends State
 
-@export var Rise:State
-@export var Fall:State
-@export var coyote_time :=0.15
-@export var jump_buffer:= 0.1
-@export var jump_pressed:float = 0.0
+@export var jump_height:float
+@export var peak_time:float
 
-var already_jumped:bool = false
-func enter():
-	already_jumped = false
-	set_jump_state()
-	super()
-	
+@onready var jump_velocity:float =(-1)*(2*jump_height)/peak_time
+@onready var jump_gravity:float = (-1)*(-2*jump_height)/(peak_time*peak_time)
+
+@export var max_speed_on_air:int =100
+@export var state_sprite:Sprite2D
+#@export var transition_to_rise_sprite:Sprite2D
+
+var difference_waiting:bool = false
+@onready var min_height = jump_height/3
+@onready var full_time = peak_time
+signal can_be_override
+
 func initialize():
 	super()
+	#state_sprite.flip_h = core.player_core.input_vector.x < 0
+	#transition_to_rise_sprite.flip_h = core.player_core.input_vector.x < 0
+	state_sprite.frame = 0
+	core.body.velocity.y = 0
 	
+	difference_waiting = false
+	jump_height = min_height*3
+	peak_time = full_time
 
-func set_jump_state():
-	#print(_machine.current_state)
-	if core.body.is_on_floor():
-		if !already_jumped:
-			transition_to_rise()
-			await core.animator.transition_finished
-			
-		_machine.set_state(Rise)
-		already_jumped = true
-	if Input.is_action_just_pressed("jump") && core.body.is_on_floor():
-		if !already_jumped:
-			transition_to_rise()
-			await core.animator.transition_finished
-			_machine.set_state(Rise)
-			
-		already_jumped = true
-	elif !core.body.is_on_floor() && _machine.current_state!= Rise:
-		_machine.set_state(Fall)
-		
-
-func do(delta):
+func can_be_override_checker():
+	return !lambda_time()<full_time/3
 	
-	jump_pressed -= delta #decreases the value in the amount of time since pressed
-	
-	if lambda_time() <= coyote_time && Input.is_action_just_pressed("jump") && !already_jumped:
-		transition_to_rise()
-		await core.animator.transition_finished
-		_machine.set_state(Rise)
-		already_jumped = true
-		
-	super(delta)
-	
-	if Rise.is_active() && Rise.is_complete:
-
-
-		rise_to_fall_transition()
-		await core.animator.transition_finished
-		_machine.set_state(Fall)
-	
-	if Fall.is_active():
-		if Input.is_action_just_pressed("jump"):
-			jump_pressed = jump_buffer ## Resets the value when jump pressed when falling
-			
-		if core.body.is_on_floor() && jump_pressed > 0 && core.player_core.is_inputting_jump(): 
-			## verifies if is grounded before jump_buffer amount
-			transition_to_rise()
-			await core.animator.transition_finished
-
-			_machine.set_state(Rise)
-			return
-			
-		elif core.body.is_on_floor():
-			#play_fall_transition()
-			#await core.animator.transition_finished
-			complete()
-		
-				
-				
-	#if _machine.current_state == null:
-		#return
-	#if _machine.current_state.is_complete:
-		#set_jump_state()
-
-func rise_to_fall_transition():
-	if core.player_core.input_vector.x >=0:
-		core.animator.play_transition('Transitions/no_girl_Rise_to_Fall_E')
-	else:
-		core.animator.play_transition('Transitions/no_girl_Rise_to_Fall_W')
-
-func transition_to_rise():
-	if core.player_core.input_vector.x >=0:
-		core.animator.play_transition("Transitions/No_girl_Jump_Anticipation_E")
-	else:
-		core.animator.play_transition("Transitions/No_girl_Jump_Anticipation_W")
-
-
-
-func complete():
+func enter():
+	#print('olha que bizarrice')
 	super()
-	clear_machine()
+	jump()
+	is_jump_already_released()
+
+#func _unhandled_input(_event: InputEvent) -> void:
+	#
+	#if Input.is_action_just_released("jump"):
+		#if lambda_time()<=peak_time/2 && !difference_waiting:
+			#difference_waiting = true
+			#var difference = (peak_time/3) - lambda_time()
+			#await get_tree().create_timer(difference).timeout
+			#
+			#complete()
+		#else:
+			#complete()
+
+
+func get_gravity():
+	return jump_gravity
+
 	
+func do(delta):
+	if lambda_time() > full_time/3:
+		can_be_override.emit()
+	if lambda_time()< full_time/3:
+		is_jump_already_released()
+
+	super(delta)
+	if lambda_time()>peak_time && is_active():
+		core.body.velocity.y = 0
+		complete()
+
+func is_jump_already_released():
+	if !Input.is_action_pressed('jump'):
+		if !difference_waiting:
+			peak_time = full_time/3
+			jump_height = min_height/3
+			difference_waiting = true
+			#var difference = (peak_time/3) - lambda_time()
+			#await get_tree().create_timer(difference).timeout
+			#core.body.velocity.y = 0
+			#complete()
+			
+func jump():
+	core.body.velocity.y = jump_velocity
+	sets_animation()
+
+func physics_do(delta):
+	super(delta)
+	core.body.velocity.y += get_gravity()*delta
+	core.body.velocity.x = core.player_core.xInput*max_speed_on_air
+	core.body.move_and_slide()
+	
+		
+func sets_animation():
+	if core.player_core.input_vector.x >=0:
+		#core.animator.play_transition("Transitions/No_girl_Jump_Anticipation_E")
+		#await core.animator.transition_finished
+		core.animator.play_after_transition("Not_Holding_Girl/Jump_Rise_E")
+	else:
+		#core.animator.play_transition("Transitions/No_girl_Jump_Anticipation_W")
+		#await core.animator.transition_finished
+		core.animator.play_after_transition("Not_Holding_Girl/Jump_Rise_W")

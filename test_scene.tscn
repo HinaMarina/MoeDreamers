@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo6s5wj8g6ogs"]
+[gd_scene load_steps=5 format=3 uid="uid://bo6s5wj8g6ogs"]
 
 [ext_resource type="Texture2D" uid="uid://b8lke5qxvboit" path="res://icon.svg" id="1_uhqqe"]
 [ext_resource type="PackedScene" uid="uid://clfgrva2huq40" path="res://Entities/Player_Aru/PlayerAru.tscn" id="2_ia1lp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ia1lp"]
 size = Vector2(592, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sasra"]
+size = Vector2(70.99997, 11.499981)
 
 [node name="Test_Scene" type="Node2D"]
 
@@ -20,6 +23,66 @@ scale = Vector2(0.21694916, 1.7066666)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D"]
 position = Vector2(-9, 0)
 shape = SubResource("RectangleShape2D_ia1lp")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-309.49997, -80.99999)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_sasra")
+one_way_collision = true
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-221.00002, -58.500008)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_sasra")
+one_way_collision = true
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-136.00002, -38.500008)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_sasra")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-394.00003, -102.50001)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_sasra")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-474.00003, -122.500015)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_sasra")
+one_way_collision = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-556, -151.50002)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_sasra")
+one_way_collision = true
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-448.00006, -195.50002)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_sasra")
+one_way_collision = true
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-358.99997, -205.75)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_sasra")
+one_way_collision = true
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-270, -223.50003)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_sasra")
+one_way_collision = true
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-187, -239.50003)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_sasra")
+one_way_collision = true
 
 [node name="PlayerAru" parent="." instance=ExtResource("2_ia1lp")]
 position = Vector2(163, 73)
