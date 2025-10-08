@@ -6,9 +6,10 @@ var machine_owner:Node
 
 
 func set_state(new_state:State,override:bool=false):
-	#if machine_owner is State:
-		#if machine_owner.core.animator.transitioning:
-			#await machine_owner.core.animator.transition_finished
+	if machine_owner is State:
+		if machine_owner.core.animator.transitioning:
+			print(machine_owner.core.animator.get_current_animation())
+			await machine_owner.core.animator.transition_finished
 	#print(machine_owner, ' is setting ', new_state)
 
 	

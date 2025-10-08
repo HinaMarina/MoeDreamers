@@ -9,7 +9,7 @@ extends State
 @export var jump_buffer:= 0.1
 @export var jump_pressed:float = 0.0
 
-var already_jumped:bool = false
+var already_jumped:bool = true
 
 func enter():
 	super()
@@ -21,7 +21,7 @@ func initialize():
 	super()
 	#
 func _unhandled_input(event: InputEvent) -> void:
-	##this piece of code handles overriding the fall transition if you wanna jump again
+	#this piece of code handles overriding the fall transition if you wanna jump again
 	if (core.animator.get_current_animation() == "Transitions/Fall_Transition_E"
 	|| core.animator.get_current_animation() == "Transitions/Fall_Transition_W"):
 		if Input.is_action_just_pressed("jump"):

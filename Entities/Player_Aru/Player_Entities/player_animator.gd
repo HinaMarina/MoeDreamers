@@ -17,12 +17,11 @@ func play_transition(transition:String):
 	transitions_playlist.append(transition)
 		
 		
-		
 	
 		
 func play_after_transition(anim_name:String):
-	if transitioning:
-		await transition_finished
+	#if transitioning:
+		#await transition_finished
 	play(anim_name)
 
 func _ready() -> void:
@@ -48,15 +47,16 @@ func _on_animation_started(anim_name: StringName) -> void:
 			each.visible = false
 
 
-#
-#func _on_animation_finished(anim_name: StringName) -> void:
-	#print(anim_name, ' finished')
+
+func _on_animation_finished(anim_name: StringName) -> void:
+	print(anim_name, ' finished')
 	#var animation = anim_name.get_slice("/",1)
 	#if get_animation_library("Transitions").has_animation(animation):
 		#transitioning = false
 		#transition_finished.emit()
 
 func _process(delta: float) -> void:
+	#print(transitions_playlist)
 	if !transitions_playlist.is_empty():
 		transitioning = true
 		for each in transitions_playlist:
@@ -67,3 +67,11 @@ func _process(delta: float) -> void:
 	if transitions_playlist.is_empty() && transitioning:
 		transitioning = false
 		transition_finished.emit()
+		
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event.is_action("attack")||event.is_action("jump"):
+		##transitions_playlist.clear()
+		#if !transitions_playlist.is_empty():
+			#transitioning = false
+			#transition_finished.emit()
+			#transitions_playlist.clear()
