@@ -40,12 +40,13 @@ func initialize():
 	
 func set_animation():
 	if core.player_core.input_vector.x >= 0:
-		core.animator.play_after_transition("Not_Holding_Girl/On_Air_Attack_E")
+		core.animator.play("Not_Holding_Girl/On_Air_Attack_E")
 	else:
-		core.animator.play_after_transition("Not_Holding_Girl/On_Air_Attack_W")
+		core.animator.play("Not_Holding_Girl/On_Air_Attack_W")
 
 
 
 func complete():
-	super()
 	core.player_core.release_movement()
+	super()
+	

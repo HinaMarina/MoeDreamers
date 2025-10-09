@@ -33,6 +33,7 @@ func _ready():
 		main_machine.set_state(Not_Holding_Girl,true)
 		
 func updates_input_vector():
+	#print(can_player_move)
 	if !can_player_move:
 		return
 	
@@ -40,6 +41,7 @@ func updates_input_vector():
 	yInput = Input.get_axis("ui_down","ui_up")
 	
 	if xInput!= 0:
+		
 		last_xInput = input_vector.x
 		input_vector = Vector2(xInput,yInput)
 		
@@ -57,16 +59,14 @@ func _process(delta: float) -> void:
 	updates_input_vector()
 		
 	
-	if animator.transitioning:
-		await animator.transition_finished
+
 		
 	if main_machine.current_state != null:
 		main_machine.current_state.do(delta)
 		
 func _physics_process(delta: float) -> void:
-	#body.velocity.y+=2
-	#if can_player_move:
-		#body.move_and_slide()
+	
+	
 	if main_machine.current_state != null:
 		main_machine.current_state.physics_do(delta)
 

@@ -37,17 +37,6 @@ func do(delta):
 	
 func sets_animation():
 	if core.player_core.input_vector.x >=0:
-		core.animator.play_after_transition("Not_Holding_Girl/Jump_Fall_E")
+		core.animator.play("Not_Holding_Girl/Jump_Fall_E")
 	else:
-		core.animator.play_after_transition("Not_Holding_Girl/Jump_Fall_W")
-
-func play_fall_transition():
-	if core.player_core.input_vector.x >=0:
-		core.animator.play_transition("Transitions/Fall_Transition_E")
-	else:
-		core.animator.play_transition("Transitions/Fall_Transition_W")
-
-func complete():
-	play_fall_transition()
-	await core.animator.transition_finished
-	super()
+		core.animator.play("Not_Holding_Girl/Jump_Fall_W")

@@ -1,10 +1,25 @@
 extends State
 
 @export var Idle:State
-@export var Move:State
+
+@export var Run:State
+@export var Walk:State
 @export var On_Edge:State
 @export var Ground_Attack:State
 
+@export var Turning_Backwards:TransitionState
+@export var Stop_Running:TransitionState
+@export var Ground_Attack_Recover:TransitionState
+
+var last_before_completing:State
+
+
+func enter():
+	
+	if last_before_completing==Run && core.body.velocity.x != 0:
+		_machine.set_state(Run)
+		last_before_completing = null
+	super()
 
 func _ready():
 	super()
@@ -16,32 +31,82 @@ func _ready():
 
 	
 func select_state():
+	if (_machine.current_state != null 
+	&& _machine.last_state == Run 
+	&& _machine.current_state.is_complete
+	&& _machine.current_state!=Stop_Running
+	):
+		
+		_machine.set_state(Run)
+	
+		return
+		
+	if Ground_Attack_Recover.is_active() && !Ground_Attack_Recover.is_complete:
+		return
+			
+	if core.player_core.is_inputting_attack():
+		if _machine.current_state == Ground_Attack:
+			return
+		if _machine.current_state == Stop_Running:
+			return
+		if _machine.current_state != null:
+			_machine.current_state.complete()
+		_machine.set_state(Ground_Attack)
+		return
+		
+	if Stop_Running.is_active() && !Stop_Running.is_complete:
+		return
+
+	if Run.is_active() && !Run.is_complete:
+		return
+	if Run.is_active() && Run.is_complete:
+		_machine.set_state(Stop_Running)
+		return
 	if Ground_Attack.is_active() && !Ground_Attack.is_complete:
 		return
-	
-	if core.player_core.is_inputting_attack():
-		_machine.set_state(Ground_Attack)
-	
-	elif core.player_core.xInput != 0:
-		_machine.set_state(Move)
-		
-	elif !core.player_core.on_edge_raycast.is_colliding() && core.body.is_on_floor():
-		_machine.set_state(On_Edge)
+	if Ground_Attack.is_active() && Ground_Attack.is_complete:
+		_machine.set_state(Ground_Attack_Recover)
 		return
-	elif core.body.is_on_floor():
+		
+	if Turning_Backwards.is_active() && !Turning_Backwards.is_complete:
+			if core.player_core.is_inputting_attack():
+				Turning_Backwards.complete()
+				_machine.set_state(Ground_Attack)
+			return
+	
+	elif core.player_core.xInput!=0 && !_machine.current_state == Run:
+		if _machine.current_state!=null:
+			_machine.current_state.complete()
+		
+		_machine.set_state(Walk)
+	elif !core.player_core.on_edge_raycast.is_colliding():
+		_machine.set_state(On_Edge)
+	else:
 		_machine.set_state(Idle)
-		Move.clear_machine()
+	
+	
 
 func do(delta):
+	#print(_machine.current_state)
+	#print(all_transition_states)
 	super(delta)
 	select_state()
 	if !core.body.is_on_floor():
 		complete()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _machine.current_state == Ground_Attack:
+		return
+	elif core.player_core.double_tapped_checker(event):
+		_machine.set_state(Run)
 	
 func on_player_turned_backwards():
 	if is_active():
-		core.animator.play_transition("Transitions/W_to_E")
+		_machine.set_state(Turning_Backwards)
 		
 func complete():
+	last_before_completing = _machine.current_state
 	if !_machine.current_state == null:
 		_machine.current_state = null
+	super()
+	

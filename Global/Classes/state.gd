@@ -6,19 +6,26 @@ var is_complete:bool
 var start_time:float
 
 var all_child_states:Array[State]
+var all_transition_states:Array[TransitionState]
+var all_non_transitional_states : Array[State]
 var parent_state:State
 @export var clear_before_override:bool=false
 
 signal tree_is_set()
-signal state_completed()
+signal state_completed(state:State)
 
 func _ready():
 	_machine = StateMachine.new()
 	_machine.machine_owner = self
+	
 	for each in get_children():
 		if each is State:
 			all_child_states.append(each)
 			each.set_parent(self)
+			if each is TransitionState:
+				all_transition_states.append(each)
+			else:
+				all_non_transitional_states.append(each)
 	
 func set_core(_core:StateCore):
 	core = _core
@@ -55,9 +62,10 @@ func complete():
 		await _machine.current_state.state_completed
 		
 	self.is_complete = true
-	state_completed.emit()
+	state_completed.emit(self)
 	
 func do(delta):
+	
 	#print(self,' ',_machine.current_state)
 	if is_complete:
 		return
@@ -82,7 +90,8 @@ func is_active():
 func clear_machine():
 	_machine.current_state = null
 
-#
+##
 #func _process(delta: float) -> void:
-	#print(_machine.current_state)
+	#print(self, _machine.current_state)
+	##print(self, ' ',self.is_active())
 	#pass

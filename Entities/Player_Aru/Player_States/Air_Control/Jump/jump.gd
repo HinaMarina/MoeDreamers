@@ -8,7 +8,6 @@ extends State
 
 @export var max_speed_on_air:int =100
 @export var state_sprite:Sprite2D
-#@export var transition_to_rise_sprite:Sprite2D
 
 var difference_waiting:bool = false
 @onready var min_height = jump_height/3
@@ -17,8 +16,7 @@ signal can_be_override
 
 func initialize():
 	super()
-	#state_sprite.flip_h = core.player_core.input_vector.x < 0
-	#transition_to_rise_sprite.flip_h = core.player_core.input_vector.x < 0
+	
 	state_sprite.frame = 0
 	core.body.velocity.y = 0
 	
@@ -30,22 +28,11 @@ func can_be_override_checker():
 	return !lambda_time()<full_time/3
 	
 func enter():
-	#print('olha que bizarrice')
 	super()
 	jump()
 	is_jump_already_released()
 
-#func _unhandled_input(_event: InputEvent) -> void:
-	#
-	#if Input.is_action_just_released("jump"):
-		#if lambda_time()<=peak_time/2 && !difference_waiting:
-			#difference_waiting = true
-			#var difference = (peak_time/3) - lambda_time()
-			#await get_tree().create_timer(difference).timeout
-			#
-			#complete()
-		#else:
-			#complete()
+
 
 
 func get_gravity():
@@ -69,10 +56,7 @@ func is_jump_already_released():
 			peak_time = full_time/3
 			jump_height = min_height/3
 			difference_waiting = true
-			#var difference = (peak_time/3) - lambda_time()
-			#await get_tree().create_timer(difference).timeout
-			#core.body.velocity.y = 0
-			#complete()
+
 			
 func jump():
 	core.body.velocity.y = jump_velocity
@@ -87,10 +71,8 @@ func physics_do(delta):
 		
 func sets_animation():
 	if core.player_core.input_vector.x >=0:
-		#core.animator.play_transition("Transitions/No_girl_Jump_Anticipation_E")
-		#await core.animator.transition_finished
-		core.animator.play_after_transition("Not_Holding_Girl/Jump_Rise_E")
+
+		core.animator.play("Not_Holding_Girl/Jump_Rise_E")
 	else:
-		#core.animator.play_transition("Transitions/No_girl_Jump_Anticipation_W")
-		#await core.animator.transition_finished
-		core.animator.play_after_transition("Not_Holding_Girl/Jump_Rise_W")
+		
+		core.animator.play("Not_Holding_Girl/Jump_Rise_W")

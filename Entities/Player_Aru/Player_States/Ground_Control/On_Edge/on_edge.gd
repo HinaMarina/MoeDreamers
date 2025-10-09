@@ -14,6 +14,6 @@ func do(delta):
 	
 func play_animation():
 	if core.player_core.input_vector.x>=0:
-		core.animator.play_after_transition('Not_Holding_Girl/On_Edge_E')
+		core.animator.play('Not_Holding_Girl/On_Edge_E')
 	else:
-		core.animator.play_after_transition('Not_Holding_Girl/On_Edge_W')
+		core.animator.play('Not_Holding_Girl/On_Edge_W')

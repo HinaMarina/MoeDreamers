@@ -9,10 +9,10 @@ func sets_animation():
 	if core.player_core.input_vector.x > 0:
 		state_sprite.flip_h = false
 			
-		core.animator.play_after_transition("Not_Holding_Girl/Walk_E")
+		core.animator.play("Not_Holding_Girl/Walk_E")
 	else:
 		state_sprite.flip_h = true
-		core.animator.play_after_transition("Not_Holding_Girl/Walk_W")
+		core.animator.play("Not_Holding_Girl/Walk_W")
 
 func do(delta):
 	super(delta)

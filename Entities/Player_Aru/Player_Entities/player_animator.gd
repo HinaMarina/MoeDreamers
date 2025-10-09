@@ -2,27 +2,10 @@ class_name PlayerAnimator extends AnimationPlayer
 
 var all_animated_sprites:Array[Sprite2D]
 @onready var animator_root:= get_node(root_node)
-signal transition_finished()
-var transitioning:bool=false
-
 @export var player_core:PlayerCore
 
-var transitions_playlist:Array[String]
 
-func play_transition(transition:String):
-	
-	
-	if transition == get_current_animation():
-		return
-	transitions_playlist.append(transition)
-		
-		
-	
-		
-func play_after_transition(anim_name:String):
-	#if transitioning:
-		#await transition_finished
-	play(anim_name)
+
 
 func _ready() -> void:
 	for each in get_animation_list():
@@ -46,32 +29,11 @@ func _on_animation_started(anim_name: StringName) -> void:
 		else:
 			each.visible = false
 
-
-
-func _on_animation_finished(anim_name: StringName) -> void:
-	print(anim_name, ' finished')
+#
+#
+#func _on_animation_finished(anim_name: StringName) -> void:
+	#print(anim_name, ' finished')
 	#var animation = anim_name.get_slice("/",1)
 	#if get_animation_library("Transitions").has_animation(animation):
 		#transitioning = false
 		#transition_finished.emit()
-
-func _process(delta: float) -> void:
-	#print(transitions_playlist)
-	if !transitions_playlist.is_empty():
-		transitioning = true
-		for each in transitions_playlist:
-			play(each)
-			await animation_finished
-			transitions_playlist.erase(each)
-			
-	if transitions_playlist.is_empty() && transitioning:
-		transitioning = false
-		transition_finished.emit()
-		
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event.is_action("attack")||event.is_action("jump"):
-		##transitions_playlist.clear()
-		#if !transitions_playlist.is_empty():
-			#transitioning = false
-			#transition_finished.emit()
-			#transitions_playlist.clear()
