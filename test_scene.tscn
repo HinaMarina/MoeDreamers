@@ -23,6 +23,84 @@ scale = Vector2(0.21694916, 1.7066666)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D"]
 position = Vector2(-9, 0)
 shape = SubResource("RectangleShape2D_ia1lp")
+debug_color = Color(0.635118, 0.34258875, 1, 0.41960785)
+
+[node name="ColorRect" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -162.00002
+offset_top = -44.5
+offset_right = -92.000015
+offset_bottom = -33.5
+color = Color(0.28409997, 0.09449999, 0.45, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -247.00002
+offset_top = -64.5
+offset_right = -177.00002
+offset_bottom = -53.5
+color = Color(0.28409997, 0.09449999, 0.45, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -335.00003
+offset_top = -86.50001
+offset_right = -265.00003
+offset_bottom = -75.50001
+color = Color(0.28409997, 0.09449999, 0.45, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -420.00003
+offset_top = -107.50001
+offset_right = -350.00003
+offset_bottom = -96.50001
+color = Color(0.28409997, 0.09449999, 0.45, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -500.00003
+offset_top = -127.50001
+offset_right = -430.00003
+offset_bottom = -116.50001
+color = Color(0.28409997, 0.09449999, 0.45, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -582.00006
+offset_top = -156.50002
+offset_right = -512.00006
+offset_bottom = -145.50002
+color = Color(0.28409997, 0.09449999, 0.45, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -474.00006
+offset_top = -200.50002
+offset_right = -404.00006
+offset_bottom = -189.50002
+color = Color(0.28409997, 0.09449999, 0.45, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -385.00003
+offset_top = -210.50002
+offset_right = -315.00003
+offset_bottom = -199.50002
+color = Color(0.28409997, 0.09449999, 0.45, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -296.00003
+offset_top = -228.50002
+offset_right = -226.00003
+offset_bottom = -217.50002
+color = Color(0.28409997, 0.09449999, 0.45, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -213.00003
+offset_top = -244.50002
+offset_right = -143.00003
+offset_bottom = -233.50002
+color = Color(0.28409997, 0.09449999, 0.45, 1)
+
+[node name="ColorRect11" type="ColorRect" parent="Icon/StaticBody2D/CollisionShape2D"]
+offset_left = -296.00003
+offset_top = -10.5
+offset_right = 295.99997
+offset_bottom = 58.5
+color = Color(0.28409997, 0.09449999, 0.45, 1)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Icon/StaticBody2D"]
 position = Vector2(-309.49997, -80.99999)
@@ -78,7 +156,7 @@ scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_sasra")
 one_way_collision = true
 
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+[node name="ColorRect10" type="CollisionShape2D" parent="Icon/StaticBody2D"]
 position = Vector2(-187, -239.50003)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_sasra")

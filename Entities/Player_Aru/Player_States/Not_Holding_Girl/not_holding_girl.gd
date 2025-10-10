@@ -34,6 +34,11 @@ func select_state():
 		return
 		
 	if Ground_to_Air.is_active() && !Ground_to_Air.is_complete:
+		if Ground_to_Air.lambda_time() > Air_Control.coyote_time:
+			return
+		if core.player_core.is_inputting_jump():
+			_machine.set_state(Air_Control)
+			Air_Control._machine.set_state(Air_Control.Jump)
 		return
 		
 	if Ground_to_Air.is_active() && Ground_to_Air.is_complete:

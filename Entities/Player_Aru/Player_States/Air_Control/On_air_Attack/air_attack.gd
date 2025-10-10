@@ -4,7 +4,7 @@ extends State
 @export var fall_time:float
 
 @onready var fall_gravity:float = (-1)*(-2*jump_height)/(fall_time*fall_time)
-@export var max_speed_on_air:int =100
+@export var max_speed_on_air:int =70
 
 @export var state_sprite:Sprite2D
 
@@ -28,9 +28,12 @@ func do(delta):
 		
 func physics_do(delta):
 	
+	
 	super(delta)
 	core.body.velocity.y += get_gravity()*delta
 	core.body.velocity.x = core.player_core.xInput*max_speed_on_air
+	if core.body.is_on_floor():
+		core.body.velocity.x = core.player_core.xInput*max_speed_on_air*0.6
 	core.body.move_and_slide()
 	
 func initialize():

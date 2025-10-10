@@ -46,7 +46,7 @@ func updates_input_vector():
 		input_vector = Vector2(xInput,yInput)
 		
 		player_gaze.target_position.x = 35*xInput
-		on_edge_raycast.position.x = 5*xInput
+		on_edge_raycast.position.x = 4*xInput
 		if sign(input_vector.x) == - sign(last_xInput):
 			turned_backwards.emit()
 

@@ -64,6 +64,7 @@ func jump():
 
 func physics_do(delta):
 	super(delta)
+	#core.body.velocity = core.body.velocity.move_toward(Vector2(core.body.velocity.x,core.player_core.xInput*max_speed_on_air),35)
 	core.body.velocity.y += get_gravity()*delta
 	core.body.velocity.x = core.player_core.xInput*max_speed_on_air
 	core.body.move_and_slide()

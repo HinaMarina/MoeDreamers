@@ -5,11 +5,12 @@ extends State
 @export var Jump:State
 @export var Fall:State
 
-@export var coyote_time :=0.1
-@export var jump_buffer:= 0.1
+@export var coyote_time :=0.05
+@export var jump_buffer:= 0.03
 @export var jump_pressed:float = 0.0
 
 @export var Rise_to_Fall:TransitionState
+@export var Air_Attack_to_Fall:TransitionState
 var already_jumped:bool = true
 
 func enter():
@@ -84,8 +85,16 @@ func do(delta):
 		#Fall.is_complete = true
 	
 	jump_pressed -= delta #decreases the value in the amount of time since pressed
-	if Rise_to_Fall.is_active() && !Rise_to_Fall.is_complete:
+	
+	if Air_Attack_to_Fall.is_active() && !Air_Attack_to_Fall.is_complete:
 		return
+	if Air_Attack_to_Fall.is_active() && Air_Attack_to_Fall.is_complete:
+		_machine.set_state(Fall)
+	if Rise_to_Fall.is_active() && !Rise_to_Fall.is_complete:
+		if core.player_core.is_inputting_attack():
+			_machine.set_state(Air_Attack)
+		else:
+			return
 	if Rise_to_Fall.is_active() && Rise_to_Fall.is_complete:
 		_machine.set_state(Fall)
 	if Air_Attack.is_active() && !Air_Attack.is_complete:
@@ -93,7 +102,7 @@ func do(delta):
 	
 	if Air_Attack.is_active() && Air_Attack.is_complete:
 
-		_machine.set_state(Fall)
+		_machine.set_state(Air_Attack_to_Fall)
 	
 	
 	if core.player_core.is_inputting_attack(): #handles overriding the jump state with the attack
