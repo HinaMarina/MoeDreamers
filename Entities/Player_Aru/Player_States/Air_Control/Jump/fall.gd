@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 
 @export var jump_height:float
 @export var fall_time:float

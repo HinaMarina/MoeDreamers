@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 
 @export var max_speed:=125.0
 @export var acceleration:=75.0

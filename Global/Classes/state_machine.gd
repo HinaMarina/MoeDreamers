@@ -1,11 +1,11 @@
 class_name StateMachine extends Node2D
 
-var current_state:State
-var last_state:State
+var current_state:PlayerState
+var last_state:PlayerState
 var machine_owner:Node
 
 	
-func set_state(new_state:State,override:bool=false):
+func set_state(new_state:PlayerState,override:bool=false):
 
 	if (new_state != current_state || override):
 		last_state = current_state

@@ -1,12 +1,12 @@
-extends State
+extends PlayerState
 
 
-@export var Air_Attack:State
-@export var Jump:State
-@export var Fall:State
+@export var Air_Attack:PlayerState
+@export var Jump:PlayerState
+@export var Fall:PlayerState
 
 @export var coyote_time :=0.05
-@export var jump_buffer:= 0.03
+@export var jump_buffer:= 0.1
 @export var jump_pressed:float = 0.0
 
 @export var Rise_to_Fall:TransitionState
@@ -105,7 +105,7 @@ func do(delta):
 		_machine.set_state(Air_Attack_to_Fall)
 	
 	
-	if core.player_core.is_inputting_attack(): #handles overriding the jump state with the attack
+	if core.player_core.is_inputting_attack(): #handles overriding the jump PlayerState with the attack
 		if Jump.is_active() && !Jump.can_be_override_checker():
 			await Jump.can_be_override
 		_machine.set_state(Air_Attack)

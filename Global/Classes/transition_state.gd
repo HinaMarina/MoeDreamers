@@ -1,9 +1,9 @@
-class_name TransitionState extends State
+class_name TransitionState extends PlayerState
 
 var condition_to_break:bool
 
 
-## each key of the dictionary is the state were coming from, and the value is the next state we're going for
+## each key of the dictionary is the PlayerState were coming from, and the value is the next PlayerState we're going for
 	
 
 func enter():

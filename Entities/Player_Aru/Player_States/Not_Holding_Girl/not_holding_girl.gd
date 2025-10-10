@@ -1,7 +1,7 @@
-extends State
+extends PlayerState
 
-@export var Ground_Control:State
-@export var Air_Control:State
+@export var Ground_Control:PlayerState
+@export var Air_Control:PlayerState
 @export var Ground_to_Air:TransitionState
 @export var Air_to_Ground:TransitionState
 
@@ -16,7 +16,7 @@ func enter():
 func select_state():
 	
 	if Air_to_Ground.is_active() && !Air_to_Ground.is_complete:
-		if core.player_core.is_inputting_jump():
+		if Input.is_action_just_pressed('jump'):
 			Air_to_Ground.complete()
 			_machine.set_state(Ground_to_Air)
 			return
@@ -36,7 +36,7 @@ func select_state():
 	if Ground_to_Air.is_active() && !Ground_to_Air.is_complete:
 		if Ground_to_Air.lambda_time() > Air_Control.coyote_time:
 			return
-		if core.player_core.is_inputting_jump():
+		if Input.is_action_just_pressed("jump") && !core.body.is_on_floor():
 			_machine.set_state(Air_Control)
 			Air_Control._machine.set_state(Air_Control.Jump)
 		return

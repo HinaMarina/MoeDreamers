@@ -1,7 +1,8 @@
-[gd_scene load_steps=71 format=3 uid="uid://clfgrva2huq40"]
+[gd_scene load_steps=72 format=3 uid="uid://clfgrva2huq40"]
 
 [ext_resource type="Script" uid="uid://i87yeblqw7wt" path="res://Entities/Player_Aru/Player_Entities/player_animator.gd" id="1_ict5h"]
 [ext_resource type="Script" uid="uid://bh6tchiutu1w7" path="res://Entities/Player_Aru/player_camera.gd" id="1_yxsfr"]
+[ext_resource type="Script" uid="uid://cscjeg5bhdvwl" path="res://Entities/Player_Aru/Player_Entities/Player_Camera/camera_core.gd" id="2_q7k2s"]
 [ext_resource type="Script" uid="uid://b85bp428wvb2h" path="res://Entities/Player_Aru/Player_States/player_core.gd" id="3_i4t1f"]
 [ext_resource type="Script" uid="uid://8ved51p5piwt" path="res://Entities/Player_Aru/Player_States/Not_Holding_Girl/not_holding_girl.gd" id="4_4nfdv"]
 [ext_resource type="Script" uid="uid://c6yj0bmln1ixv" path="res://Entities/Player_Aru/Player_States/Ground_Control/ground_control.gd" id="5_m1nqx"]
@@ -610,6 +611,36 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_yax3o"]
+resource_name = "On_Edge_W"
+length = 0.72
+loop_mode = 1
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/No_Girl-On_Edge:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/No_Girl-On_Edge:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.36, 0.48, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="Animation" id="Animation_srqsh"]
 resource_name = "Run_E"
 length = 0.72
@@ -788,36 +819,6 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_yax3o"]
-resource_name = "On_Edge_W"
-length = 0.72
-loop_mode = 1
-step = 0.12
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Animations/No_Girl-On_Edge:flip_h")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Animations/No_Girl-On_Edge:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.24, 0.36, 0.48, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qdeho"]
 _data = {
 &"Idle_E": SubResource("Animation_yxsfr"),
@@ -836,6 +837,64 @@ _data = {
 &"Sword_Grounded_Attack1_W": SubResource("Animation_3cars"),
 &"Walk_E": SubResource("Animation_qdeho"),
 &"Walk_W": SubResource("Animation_hqqah")
+}
+
+[sub_resource type="Animation" id="Animation_xjnnq"]
+resource_name = "Air_Attack_To_Fall_E"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Transitions/On_Air_Attack_To_Fall:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Transitions/On_Air_Attack_To_Fall:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_j44y5"]
+resource_name = "Air_Attack_To_Fall_W"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Transitions/On_Air_Attack_To_Fall:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Transitions/On_Air_Attack_To_Fall:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_52va6"]
@@ -1139,64 +1198,6 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_xjnnq"]
-resource_name = "Air_Attack_To_Fall_E"
-length = 0.1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Transitions/On_Air_Attack_To_Fall:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Transitions/On_Air_Attack_To_Fall:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_j44y5"]
-resource_name = "Air_Attack_To_Fall_W"
-length = 0.1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Transitions/On_Air_Attack_To_Fall:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Transitions/On_Air_Attack_To_Fall:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hqqah"]
 _data = {
 &"Air_Attack_To_Fall_E": SubResource("Animation_xjnnq"),
@@ -1219,9 +1220,13 @@ size = Vector2(4, 24)
 
 [node name="PlayerAru" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player_body")]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player_body", "player_machine")]
 script = ExtResource("1_yxsfr")
 player_body = NodePath("../CharacterBody2D")
+player_machine = NodePath("../CharacterBody2D/Player_Core")
+
+[node name="Camera_Machine_Core" type="Node" parent="Camera2D"]
+script = ExtResource("2_q7k2s")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
@@ -1251,6 +1256,7 @@ Ground_Control = NodePath("Ground_Control")
 Air_Control = NodePath("Air_Control")
 Ground_to_Air = NodePath("Ground_To_Air")
 Air_to_Ground = NodePath("Air_To_Ground")
+clear_before_override = null
 
 [node name="Ground_Control" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl" node_paths=PackedStringArray("Idle", "Run", "Walk", "On_Edge", "Ground_Attack", "Turning_Backwards", "Stop_Running", "Ground_Attack_Recover")]
 script = ExtResource("5_m1nqx")
@@ -1262,27 +1268,38 @@ Ground_Attack = NodePath("Ground_Attack")
 Turning_Backwards = NodePath("Turning_Backwards")
 Stop_Running = NodePath("Stop_Running")
 Ground_Attack_Recover = NodePath("Ground_Attack_Recover")
+clear_before_override = null
 
 [node name="Idle" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Ground_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("6_r02cx")
+friction = null
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-Idle")
 no_blink_texture = ExtResource("7_0ntgp")
 blink_texture = ExtResource("8_f25kn")
+clear_before_override = null
 
 [node name="Ground_Attack" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Ground_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("12_qkxge")
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-SwordGroundedAttack1")
+clear_before_override = null
 
 [node name="On_Edge" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Ground_Control"]
 script = ExtResource("13_05ptj")
+clear_before_override = null
 
 [node name="Run" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Ground_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("10_hqqah")
+max_speed = null
+acceleration = null
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-RunCycle")
+clear_before_override = null
 
 [node name="Walk" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Ground_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("10_yxsfr")
+max_speed = null
+acceleration = null
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-WalkCycle")
+clear_before_override = null
 
 [node name="Turning_Backwards" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Ground_Control"]
 script = ExtResource("13_xymr3")
@@ -1298,6 +1315,9 @@ script = ExtResource("12_rkx4m")
 Air_Attack = NodePath("Air_Attack")
 Jump = NodePath("Jump")
 Fall = NodePath("Fall")
+coyote_time = null
+jump_buffer = null
+jump_pressed = null
 Rise_to_Fall = NodePath("Rise_to_Fall")
 Air_Attack_to_Fall = NodePath("Air_Attack_To_Fall")
 clear_before_override = true
@@ -1306,19 +1326,26 @@ clear_before_override = true
 script = ExtResource("18_3kxtt")
 jump_height = 56.0
 fall_time = 0.6
+max_speed_on_air = null
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-OnAirAttack1")
+clear_before_override = null
 
 [node name="Jump" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("14_ad6i7")
 jump_height = 56.0
 peak_time = 0.5
+max_speed_on_air = null
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-Jump")
+clear_before_override = null
 
 [node name="Fall" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("15_1lg0y")
 jump_height = 56.0
 fall_time = 0.4
+max_speed_on_air = null
+max_fall_speed = null
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-Jump")
+clear_before_override = null
 
 [node name="Rise_to_Fall" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control"]
 script = ExtResource("20_5srs5")
@@ -1378,7 +1405,6 @@ texture = ExtResource("27_5srs5")
 hframes = 6
 
 [node name="No_Girl-OnAirAttack1" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations"]
-visible = false
 position = Vector2(0, -24)
 texture = ExtResource("23_xymr3")
 hframes = 5

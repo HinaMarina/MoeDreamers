@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 
 @export var jump_height:float
 @export var fall_time:float
@@ -23,11 +23,11 @@ func get_gravity():
 	
 func do(delta):
 	super(delta)
-	if core.body.is_on_floor():
-		complete()
+	
 		
 func physics_do(delta):
-	
+	if core.body.is_on_floor() && state_sprite.frame ==4:
+		complete()
 	
 	super(delta)
 	core.body.velocity.y += get_gravity()*delta

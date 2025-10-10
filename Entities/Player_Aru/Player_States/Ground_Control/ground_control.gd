@@ -1,17 +1,17 @@
-extends State
+extends PlayerState
 
-@export var Idle:State
+@export var Idle:PlayerState
 
-@export var Run:State
-@export var Walk:State
-@export var On_Edge:State
-@export var Ground_Attack:State
+@export var Run:PlayerState
+@export var Walk:PlayerState
+@export var On_Edge:PlayerState
+@export var Ground_Attack:PlayerState
 
 @export var Turning_Backwards:TransitionState
 @export var Stop_Running:TransitionState
 @export var Ground_Attack_Recover:TransitionState
 
-var last_before_completing:State
+var last_before_completing:PlayerState
 
 
 func enter():
@@ -25,7 +25,7 @@ func _ready():
 	super()
 	
 	
-	await tree_is_set ## Everything after this will be processed after state tree is set
+	await tree_is_set ## Everything after this will be processed after PlayerState tree is set
 	
 	core.player_core.turned_backwards.connect(on_player_turned_backwards)
 

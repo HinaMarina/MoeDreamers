@@ -1,4 +1,4 @@
-extends State
+extends PlayerState
 @export var friction:= 25
 @export var state_sprite:Sprite2D
 

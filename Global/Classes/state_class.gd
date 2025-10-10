@@ -1,17 +1,17 @@
 class_name State extends Node
 
-var core:StateCore
+
+var core = StateCore
 var _machine:StateMachine
 var is_complete:bool
 var start_time:float
 
 var all_child_states:Array[State]
-var all_transition_states:Array[TransitionState]
 var all_non_transitional_states : Array[State]
-var parent_state:State
-@export var clear_before_override:bool=false
+var parent_state:PlayerState
 
 signal tree_is_set()
+
 signal state_completed(state:State)
 
 func _ready():
@@ -30,7 +30,7 @@ func _ready():
 func set_core(_core:StateCore):
 	core = _core
 	
-func set_parent(parent:State):
+func set_parent(parent:PlayerState):
 	parent_state = parent
 	
 func set_tree(new_core:StateCore):

@@ -1,10 +1,10 @@
-class_name PlayerCore extends StateCore
+class_name PlayerCore extends PlayerStateCore
 var is_holding_girl:bool = false
 
 @onready var main_machine:StateMachine
 
-@export var Holding_Girl:State
-@export var Not_Holding_Girl:State
+@export var Holding_Girl:PlayerState
+@export var Not_Holding_Girl:PlayerState
 @export var Camera:PlayerCamera
 @export var on_edge_raycast:RayCast2D
 
