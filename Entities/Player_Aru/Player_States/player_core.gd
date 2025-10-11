@@ -1,7 +1,7 @@
 class_name PlayerCore extends PlayerStateCore
 var is_holding_girl:bool = false
 
-@onready var main_machine:StateMachine
+@onready var main_machine:PlayerStateMachine
 
 @export var Holding_Girl:PlayerState
 @export var Not_Holding_Girl:PlayerState
@@ -22,7 +22,7 @@ var double_tap_time:float
 signal turned_backwards()
 
 func _ready():
-	main_machine = StateMachine.new()
+	main_machine = PlayerStateMachine.new()
 	main_machine.machine_owner = self
 	set_instances()
 	

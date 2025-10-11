@@ -1,7 +1,7 @@
 class_name PlayerState extends Node
 
 var core:PlayerStateCore
-var _machine:StateMachine
+var _machine:PlayerStateMachine
 var is_complete:bool
 var start_time:float
 
@@ -15,7 +15,7 @@ signal tree_is_set()
 signal state_completed(PlayerState:PlayerState)
 
 func _ready():
-	_machine = StateMachine.new()
+	_machine = PlayerStateMachine.new()
 	_machine.machine_owner = self
 	
 	for each in get_children():

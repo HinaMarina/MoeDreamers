@@ -1,45 +1,41 @@
-class_name State extends Node
+class_name CameraState extends Node
 
-
-var core = StateCore
-var _machine:StateMachine
+@onready var core:CameraCore
+@onready var _machine:CameraStateMachine
 var is_complete:bool
 var start_time:float
 
-var all_child_states:Array[State]
-var all_non_transitional_states : Array[State]
-var parent_state:PlayerState
+var all_child_states:Array[CameraState]
+var parent_state:CameraState
+@export var clear_before_override:bool=false
 
 signal tree_is_set()
+signal state_completed(Camera_State:CameraState)
 
-signal state_completed(state:State)
+
 
 func _ready():
-	_machine = StateMachine.new()
+	_machine = CameraStateMachine.new()
 	_machine.machine_owner = self
 	
 	for each in get_children():
-		if each is State:
+		if each is CameraState:
 			all_child_states.append(each)
 			each.set_parent(self)
-			if each is TransitionState:
-				all_transition_states.append(each)
-			else:
-				all_non_transitional_states.append(each)
-	
-func set_core(_core:StateCore):
+
+func set_core(_core:CameraCore):
 	core = _core
 	
-func set_parent(parent:PlayerState):
+func set_parent(parent:CameraState):
 	parent_state = parent
 	
-func set_tree(new_core:StateCore):
+func set_tree(new_core:CameraCore):
 	set_core(new_core)
 	for each in all_child_states:
 		each.set_core(new_core)
 		each.set_tree(new_core)
 	tree_is_set.emit()
-		
+
 func lambda_time():
 	return (Time.get_ticks_msec() - start_time)/1000
 	
@@ -86,12 +82,3 @@ func exit():
 func is_active():
 	if parent_state != null:
 		return (parent_state._machine.current_state == self)
-		
-func clear_machine():
-	_machine.current_state = null
-
-##
-#func _process(delta: float) -> void:
-	#print(self, _machine.current_state)
-	##print(self, ' ',self.is_active())
-	#pass

@@ -1,12 +1,16 @@
-[gd_scene load_steps=72 format=3 uid="uid://clfgrva2huq40"]
+[gd_scene load_steps=76 format=3 uid="uid://clfgrva2huq40"]
 
 [ext_resource type="Script" uid="uid://i87yeblqw7wt" path="res://Entities/Player_Aru/Player_Entities/player_animator.gd" id="1_ict5h"]
 [ext_resource type="Script" uid="uid://bh6tchiutu1w7" path="res://Entities/Player_Aru/player_camera.gd" id="1_yxsfr"]
-[ext_resource type="Script" uid="uid://cscjeg5bhdvwl" path="res://Entities/Player_Aru/Player_Entities/Player_Camera/camera_core.gd" id="2_q7k2s"]
+[ext_resource type="Script" uid="uid://cscjeg5bhdvwl" path="res://Entities/Player_Aru/Player_Entities/Player_Camera/Camera_Classes/camera_core.gd" id="2_q7k2s"]
+[ext_resource type="Script" uid="uid://cpy2wmqljjddf" path="res://Entities/Player_Aru/Player_Entities/Player_Camera/Camera_States/follow.gd" id="3_cout2"]
 [ext_resource type="Script" uid="uid://b85bp428wvb2h" path="res://Entities/Player_Aru/Player_States/player_core.gd" id="3_i4t1f"]
+[ext_resource type="Script" uid="uid://cxgrhlmli3qqm" path="res://Entities/Player_Aru/Player_Entities/Player_Camera/Camera_States/idle.gd" id="3_j44y5"]
 [ext_resource type="Script" uid="uid://8ved51p5piwt" path="res://Entities/Player_Aru/Player_States/Not_Holding_Girl/not_holding_girl.gd" id="4_4nfdv"]
 [ext_resource type="Script" uid="uid://c6yj0bmln1ixv" path="res://Entities/Player_Aru/Player_States/Ground_Control/ground_control.gd" id="5_m1nqx"]
+[ext_resource type="Script" uid="uid://udcminv6v1ii" path="res://Entities/Player_Aru/Player_Entities/Player_Camera/Camera_States/tracking.gd" id="5_s6vjd"]
 [ext_resource type="Script" uid="uid://dvjm4dnohe720" path="res://Entities/Player_Aru/Player_States/Ground_Control/Idle/idle.gd" id="6_r02cx"]
+[ext_resource type="PackedScene" uid="uid://buoaj3iht7eq3" path="res://Global/Crt_shader_structure/crt_shader_structure.tscn" id="6_s6vjd"]
 [ext_resource type="Texture2D" uid="uid://dr31gwvs5635b" path="res://Entities/Player_Aru/Player_States/Ground_Control/Idle/No_girl/No_blink_Spritesheet.png" id="7_0ntgp"]
 [ext_resource type="Texture2D" uid="uid://oa6vokr16ew2" path="res://Entities/Player_Aru/Player_States/Ground_Control/Idle/No_girl/blink_Spritesheet.png" id="8_f25kn"]
 [ext_resource type="Script" uid="uid://u7l6lmrb88x1" path="res://Entities/Player_Aru/Player_States/Ground_Control/Move/run.gd" id="10_hqqah"]
@@ -1225,8 +1229,24 @@ script = ExtResource("1_yxsfr")
 player_body = NodePath("../CharacterBody2D")
 player_machine = NodePath("../CharacterBody2D/Player_Core")
 
-[node name="Camera_Machine_Core" type="Node" parent="Camera2D"]
+[node name="crt_shader_structure" parent="Camera2D" instance=ExtResource("6_s6vjd")]
+
+[node name="Camera_Machine_Core" type="Node" parent="Camera2D" node_paths=PackedStringArray("camera", "player_core", "Idle", "Tracking", "Follow")]
 script = ExtResource("2_q7k2s")
+camera = NodePath("..")
+player_core = NodePath("../../CharacterBody2D/Player_Core")
+Idle = NodePath("Idle")
+Tracking = NodePath("Tracking")
+Follow = NodePath("Follow")
+
+[node name="Idle" type="Node" parent="Camera2D/Camera_Machine_Core"]
+script = ExtResource("3_j44y5")
+
+[node name="Follow" type="Node" parent="Camera2D/Camera_Machine_Core"]
+script = ExtResource("3_cout2")
+
+[node name="Tracking" type="Node" parent="Camera2D/Camera_Machine_Core"]
+script = ExtResource("5_s6vjd")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
@@ -1256,7 +1276,6 @@ Ground_Control = NodePath("Ground_Control")
 Air_Control = NodePath("Air_Control")
 Ground_to_Air = NodePath("Ground_To_Air")
 Air_to_Ground = NodePath("Air_To_Ground")
-clear_before_override = null
 
 [node name="Ground_Control" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl" node_paths=PackedStringArray("Idle", "Run", "Walk", "On_Edge", "Ground_Attack", "Turning_Backwards", "Stop_Running", "Ground_Attack_Recover")]
 script = ExtResource("5_m1nqx")
@@ -1315,12 +1334,8 @@ script = ExtResource("12_rkx4m")
 Air_Attack = NodePath("Air_Attack")
 Jump = NodePath("Jump")
 Fall = NodePath("Fall")
-coyote_time = null
-jump_buffer = null
-jump_pressed = null
 Rise_to_Fall = NodePath("Rise_to_Fall")
 Air_Attack_to_Fall = NodePath("Air_Attack_To_Fall")
-clear_before_override = true
 
 [node name="Air_Attack" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("18_3kxtt")
@@ -1341,7 +1356,7 @@ clear_before_override = null
 [node name="Fall" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("15_1lg0y")
 jump_height = 56.0
-fall_time = 0.4
+fall_time = 0.35
 max_speed_on_air = null
 max_fall_speed = null
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-Jump")

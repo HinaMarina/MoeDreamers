@@ -34,11 +34,22 @@ func select_state():
 		return
 		
 	if Ground_to_Air.is_active() && !Ground_to_Air.is_complete:
+		if core.player_core.is_inputting_attack():
+			if !core.body.is_on_floor():
+				_machine.set_state(Air_Control)
+				Air_Control._machine.set_state(Air_Control.Air_Attack)
+				return
+			else:
+				_machine.set_state(Ground_Control)
+				Ground_Control._machine.set_state(Ground_Control.Ground_Attack)
+				return
 		if Ground_to_Air.lambda_time() > Air_Control.coyote_time:
 			return
 		if Input.is_action_just_pressed("jump") && !core.body.is_on_floor():
 			_machine.set_state(Air_Control)
 			Air_Control._machine.set_state(Air_Control.Jump)
+			return
+		
 		return
 		
 	if Ground_to_Air.is_active() && Ground_to_Air.is_complete:

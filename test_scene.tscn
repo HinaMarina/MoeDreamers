@@ -145,7 +145,7 @@ shape = SubResource("RectangleShape2D_sasra")
 one_way_collision = true
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Icon/StaticBody2D"]
-position = Vector2(-358.99997, -205.75)
+position = Vector2(-359, -205.50003)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_sasra")
 one_way_collision = true
