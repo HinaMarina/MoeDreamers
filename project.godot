@@ -25,8 +25,6 @@ window/stretch/scale_mode="integer"
 
 [editor]
 
-movie_writer/video_quality=1.0
-movie_writer/ogv/encoding_speed=1
 movie_writer/movie_file="C:/Users/Marina e Alice/Documents/GodotPROJs/Godot 4.5 Projects 2025/moe-dreamers/test.avi"
 
 [input]

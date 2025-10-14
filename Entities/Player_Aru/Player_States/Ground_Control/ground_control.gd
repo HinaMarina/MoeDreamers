@@ -36,8 +36,12 @@ func select_state():
 	&& _machine.current_state.is_complete
 	&& _machine.current_state!=Stop_Running
 	):
-		
+		if _machine.current_state == Ground_Attack:
+			if !Input.is_action_pressed("movement_action"):
+				_machine.set_state(Ground_Attack_Recover)
+				return
 		_machine.set_state(Run)
+		
 	
 		return
 		

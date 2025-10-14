@@ -22,6 +22,7 @@ var double_tap_time:float
 signal turned_backwards()
 
 func _ready():
+	input_vector = Vector2(0,1)
 	main_machine = PlayerStateMachine.new()
 	main_machine.machine_owner = self
 	set_instances()

@@ -4,7 +4,7 @@ extends PlayerState
 @export var fall_time:float
 
 @onready var fall_gravity:float = (-1)*(-2*jump_height)/(fall_time*fall_time)
-@export var max_speed_on_air:int =100
+@export var max_speed_on_air:int =85
 @export var max_fall_speed:int = 400
 @export var state_sprite:Sprite2D
 

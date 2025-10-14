@@ -6,7 +6,7 @@ extends PlayerState
 @onready var jump_velocity:float =(-1)*(2*jump_height)/peak_time
 @onready var jump_gravity:float = (-1)*(-2*jump_height)/(peak_time*peak_time)
 
-@export var max_speed_on_air:int =100
+@export var max_speed_on_air:int =85
 @export var state_sprite:Sprite2D
 
 var difference_waiting:bool = false
@@ -42,7 +42,7 @@ func get_gravity():
 func do(delta):
 	if lambda_time() > full_time/3:
 		can_be_override.emit()
-	if lambda_time()< full_time/3:
+	if lambda_time()< full_time/1.5:
 		is_jump_already_released()
 
 	super(delta)

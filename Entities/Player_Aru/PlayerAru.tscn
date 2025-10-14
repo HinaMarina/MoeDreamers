@@ -11,14 +11,13 @@
 [ext_resource type="Script" uid="uid://udcminv6v1ii" path="res://Entities/Player_Aru/Player_Entities/Player_Camera/Camera_States/tracking.gd" id="5_s6vjd"]
 [ext_resource type="Script" uid="uid://dvjm4dnohe720" path="res://Entities/Player_Aru/Player_States/Ground_Control/Idle/idle.gd" id="6_r02cx"]
 [ext_resource type="PackedScene" uid="uid://buoaj3iht7eq3" path="res://Global/Crt_shader_structure/crt_shader_structure.tscn" id="6_s6vjd"]
-[ext_resource type="Texture2D" uid="uid://dr31gwvs5635b" path="res://Entities/Player_Aru/Player_States/Ground_Control/Idle/No_girl/No_blink_Spritesheet.png" id="7_0ntgp"]
-[ext_resource type="Texture2D" uid="uid://oa6vokr16ew2" path="res://Entities/Player_Aru/Player_States/Ground_Control/Idle/No_girl/blink_Spritesheet.png" id="8_f25kn"]
 [ext_resource type="Script" uid="uid://u7l6lmrb88x1" path="res://Entities/Player_Aru/Player_States/Ground_Control/Move/run.gd" id="10_hqqah"]
 [ext_resource type="Script" uid="uid://x0v25iuyetku" path="res://Entities/Player_Aru/Player_States/Ground_Control/Move/walk.gd" id="10_yxsfr"]
 [ext_resource type="Texture2D" uid="uid://032l75c5cvfw" path="res://Entities/Player_Aru/Player_States/Ground_Control/Move/No_Girl/walkcycle_Spritesheet.png" id="11_qdeho"]
 [ext_resource type="Script" uid="uid://cvuit5hodwmus" path="res://Entities/Player_Aru/Player_States/Ground_Control/Sword_Grounded_Attack/ground_attack.gd" id="12_qkxge"]
 [ext_resource type="Script" uid="uid://b2xaj4by7geq4" path="res://Entities/Player_Aru/Player_States/Air_Control/air_control.gd" id="12_rkx4m"]
 [ext_resource type="Script" uid="uid://but1b7sqhqs1r" path="res://Entities/Player_Aru/Player_States/Ground_Control/On_Edge/on_edge.gd" id="13_05ptj"]
+[ext_resource type="Texture2D" uid="uid://da0wdw7pffdkr" path="res://Entities/Player_Aru/Player_States/Ground_Control/Idle/No_girl/blink_Spritesheet3.png" id="13_s6vjd"]
 [ext_resource type="Texture2D" uid="uid://bhd1hkhq58d6w" path="res://Entities/Player_Aru/Player_States/Ground_Control/Move/No_Girl/runcycle_Spritesheet.png" id="13_srqsh"]
 [ext_resource type="Script" uid="uid://dagxtsyv6m08d" path="res://Entities/Player_Aru/Player_States/Ground_Control/Ground_Control_TransitionStates/Turning_Backwards.gd" id="13_xymr3"]
 [ext_resource type="Script" uid="uid://ck3bqthu127uy" path="res://Entities/Player_Aru/Player_States/Ground_Control/Ground_Control_TransitionStates/stop_running.gd" id="14_3kxtt"]
@@ -39,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dwd8og3t7pax0" path="res://Entities/Player_Aru/Player_States/Air_Control/On_air_Attack/on_air_attack_sprite.png" id="23_xymr3"]
 [ext_resource type="Texture2D" uid="uid://umcxafsf1bc8" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/stop_running_transition.png" id="25_3cars"]
 [ext_resource type="Texture2D" uid="uid://dsk875ytf15xl" path="res://Entities/Player_Aru/Player_States/Ground_Control/On_Edge/No_Girl-on_edge2.png" id="27_5srs5"]
+[ext_resource type="Texture2D" uid="uid://u8cq47g86oo1" path="res://Entities/Player_Aru/Player_States/Ground_Control/Idle/No_girl/No_blink_Spritesheet3.png" id="29_1bea2"]
 [ext_resource type="Texture2D" uid="uid://cfayjuq2ntxgq" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/On_air_Attack_to_Fall.png" id="34_u85lk"]
 
 [sub_resource type="Animation" id="Animation_rkx4m"]
@@ -353,7 +353,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_yxsfr"]
 resource_name = "Idle_E"
-length = 0.7
+length = 1.05
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -375,7 +375,7 @@ tracks/1/path = NodePath("Sprites/Animations/No_Girl-Idle:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
@@ -1015,7 +1015,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_05ptj"]
-length = 0.1
+length = 0.04
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1043,7 +1043,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_lb5uc"]
 resource_name = "No_girl_Jump_Anticipation_W"
-length = 0.1
+length = 0.04
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1220,11 +1220,15 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yxsfr"]
-size = Vector2(4, 24)
+size = Vector2(6, 24)
 
 [node name="PlayerAru" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player_body", "player_machine")]
+position_smoothing_speed = 1.0
+drag_vertical_enabled = true
+drag_vertical_offset = -1.0
+drag_top_margin = 0.4
 script = ExtResource("1_yxsfr")
 player_body = NodePath("../CharacterBody2D")
 player_machine = NodePath("../CharacterBody2D/Player_Core")
@@ -1287,14 +1291,13 @@ Ground_Attack = NodePath("Ground_Attack")
 Turning_Backwards = NodePath("Turning_Backwards")
 Stop_Running = NodePath("Stop_Running")
 Ground_Attack_Recover = NodePath("Ground_Attack_Recover")
-clear_before_override = null
 
 [node name="Idle" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Ground_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("6_r02cx")
 friction = null
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-Idle")
-no_blink_texture = ExtResource("7_0ntgp")
-blink_texture = ExtResource("8_f25kn")
+no_blink_texture = ExtResource("29_1bea2")
+blink_texture = ExtResource("13_s6vjd")
 clear_before_override = null
 
 [node name="Ground_Attack" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Ground_Control" node_paths=PackedStringArray("state_sprite")]
@@ -1347,20 +1350,15 @@ clear_before_override = null
 
 [node name="Jump" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("14_ad6i7")
-jump_height = 56.0
-peak_time = 0.5
-max_speed_on_air = null
+jump_height = 48.0
+peak_time = 0.4
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-Jump")
-clear_before_override = null
 
 [node name="Fall" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
 script = ExtResource("15_1lg0y")
 jump_height = 56.0
 fall_time = 0.35
-max_speed_on_air = null
-max_fall_speed = null
 state_sprite = NodePath("../../../../Sprites/Animations/No_Girl-Jump")
-clear_before_override = null
 
 [node name="Rise_to_Fall" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl/Air_Control"]
 script = ExtResource("20_5srs5")
@@ -1385,9 +1383,8 @@ shape = SubResource("RectangleShape2D_yxsfr")
 [node name="Animations" type="Node2D" parent="CharacterBody2D/Sprites"]
 
 [node name="No_Girl-Idle" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations"]
-visible = false
 position = Vector2(0, -20)
-texture = ExtResource("7_0ntgp")
+texture = ExtResource("29_1bea2")
 hframes = 7
 
 [node name="No_Girl-WalkCycle" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations"]
@@ -1397,13 +1394,12 @@ texture = ExtResource("11_qdeho")
 hframes = 6
 
 [node name="No_Girl-RunCycle" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations"]
-visible = false
 position = Vector2(0, -20)
 texture = ExtResource("13_srqsh")
 hframes = 6
 
 [node name="No_Girl-Jump" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations"]
-position = Vector2(0, -23)
+position = Vector2(0, -27)
 texture = ExtResource("17_dcg5s")
 hframes = 7
 
@@ -1420,6 +1416,7 @@ texture = ExtResource("27_5srs5")
 hframes = 6
 
 [node name="No_Girl-OnAirAttack1" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations"]
+visible = false
 position = Vector2(0, -24)
 texture = ExtResource("23_xymr3")
 hframes = 5
