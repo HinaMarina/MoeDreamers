@@ -71,7 +71,16 @@ func select_state():
 	
 		
 	if Air_Control.is_complete && Air_Control.is_active():
-		
+		if Air_Control._machine.last_state == Air_Control.Fast_Fall:
+			#this piece of the code will make Ground Control forget if it was Running Before the Fast Fall
+			Ground_Control.last_before_completing = null
+			Ground_Control._machine.last_state = null
+			Ground_Control._machine.set_state(Ground_Control.Idle)
+			core.body.velocity.x = 0
+			
+			_machine.set_state(Ground_Control)
+			
+			return
 		_machine.set_state(Air_to_Ground)
 		
 	

@@ -1,7 +1,7 @@
 extends PlayerState
 
 @export var max_speed:=125.0
-@export var acceleration:=75.0
+@export var acceleration:=35.0
 @export var state_sprite:Sprite2D
 
 func enter():

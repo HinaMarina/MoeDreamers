@@ -32,9 +32,9 @@ shader_parameter/bloom_blur_subdivisions = 8
 [node name="crt_shader_structure" type="Node"]
 
 [node name="CRT" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CRT"]
+visible = false
 material = SubResource("ShaderMaterial_hj1c0")
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,6 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Blur" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Blur"]
 material = SubResource("ShaderMaterial_761t5")

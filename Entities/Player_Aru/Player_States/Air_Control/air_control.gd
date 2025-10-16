@@ -4,6 +4,7 @@ extends PlayerState
 @export var Air_Attack:PlayerState
 @export var Jump:PlayerState
 @export var Fall:PlayerState
+@export var Fast_Fall:PlayerState
 
 @export var coyote_time :=0.05
 @export var jump_buffer:= 0.1
@@ -11,7 +12,15 @@ extends PlayerState
 
 @export var Rise_to_Fall:TransitionState
 @export var Air_Attack_to_Fall:TransitionState
+@export var Fast_Fall_Recovery:TransitionState
 var already_jumped:bool = true
+signal max_fall_vel_achieved()
+
+func _ready():
+	super()
+	Fall.max_vel_achieved.connect(on_fall_max_vell)
+	
+
 
 func enter():
 	super()
@@ -24,13 +33,13 @@ func initialize():
 	#
 func _unhandled_input(event: InputEvent) -> void:
 	#this piece of code handles overriding the fall transition if you wanna jump again
-	if (core.animator.get_current_animation() == "Transitions/Fall_Transition_E"
-	|| core.animator.get_current_animation() == "Transitions/Fall_Transition_W"):
-		if Input.is_action_just_pressed("jump"):
-			Fall.is_complete = true
-			#transition_to_jump()
-			#await core.animator.transition_finished
-			_machine.set_state(Jump)
+	#if (core.animator.get_current_animation() == "Transitions/Fall_Transition_E"
+	#|| core.animator.get_current_animation() == "Transitions/Fall_Transition_W"):
+		#if Input.is_action_just_pressed("jump"):
+			#Fall.is_complete = true
+			##transition_to_jump()
+			##await core.animator.transition_finished
+			#_machine.set_state(Jump)
 	if (core.animator.get_current_animation() == "Transitions/no_girl_Rise_to_Fall_E"
 	|| core.animator.get_current_animation() == "Transitions/no_girl_Rise_to_Fall_W"):
 		if Input.is_action_just_pressed("attack"):
@@ -85,7 +94,13 @@ func do(delta):
 		#Fall.is_complete = true
 	
 	jump_pressed -= delta #decreases the value in the amount of time since pressed
-	
+
+	if Fast_Fall_Recovery.is_active() && !Fast_Fall_Recovery.is_complete:
+		return
+	if Fast_Fall_Recovery.is_active() && Fast_Fall_Recovery.is_complete:
+		complete()
+	if Fast_Fall.is_active() && Fast_Fall.is_complete:
+		_machine.set_state(Fast_Fall_Recovery)
 	if Air_Attack_to_Fall.is_active() && !Air_Attack_to_Fall.is_complete:
 		return
 	if Air_Attack_to_Fall.is_active() && Air_Attack_to_Fall.is_complete:
@@ -120,10 +135,13 @@ func do(delta):
 	#
 
 	super(delta)
-				
+	
+	if Fast_Fall.is_active() && !Fast_Fall.is_complete:
+		return
 	
 
-
+func on_fall_max_vell():
+	_machine.set_state(Fast_Fall)
 
 func complete():
 	super()

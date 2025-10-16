@@ -5,8 +5,10 @@ extends PlayerState
 
 @onready var fall_gravity:float = (-1)*(-2*jump_height)/(fall_time*fall_time)
 @export var max_speed_on_air:int =85
-@export var max_fall_speed:int = 400
+@export var max_fall_speed:int = 450
 @export var state_sprite:Sprite2D
+
+signal max_vel_achieved()
 
 func initialize():
 	super()
@@ -30,6 +32,8 @@ func physics_do(delta):
 	core.body.move_and_slide()
 	
 func do(delta):
+	if core.body.velocity.y == 450:
+		max_vel_achieved.emit()
 	if core.body.is_on_floor():
 		complete()
 	super(delta)
