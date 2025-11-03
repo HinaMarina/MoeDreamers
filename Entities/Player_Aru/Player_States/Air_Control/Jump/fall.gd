@@ -4,7 +4,10 @@ extends PlayerState
 @export var fall_time:float
 
 @onready var fall_gravity:float = (-1)*(-2*jump_height)/(fall_time*fall_time)
-@export var max_speed_on_air:int =85
+@export var max_speed_on_air:int =75
+const speed_on_air:= 75
+
+var current_horizontal_velocity:int
 @export var max_fall_speed:int = 450
 @export var state_sprite:Sprite2D
 
@@ -14,11 +17,14 @@ func initialize():
 	super()
 	state_sprite.flip_h = core.player_core.input_vector.x < 0
 	state_sprite.frame = 3
+	#max_speed_on_air = 85
 
 func get_gravity():
 	return fall_gravity
 
 func enter():
+	current_horizontal_velocity = int(core.body.velocity.x)
+	max_speed_on_air = max(current_horizontal_velocity,max_speed_on_air)
 	super()
 	if core.body.is_on_floor():
 		complete()

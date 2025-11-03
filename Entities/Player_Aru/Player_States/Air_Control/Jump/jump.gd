@@ -6,7 +6,9 @@ extends PlayerState
 @onready var jump_velocity:float =(-1)*(2*jump_height)/peak_time
 @onready var jump_gravity:float = (-1)*(-2*jump_height)/(peak_time*peak_time)
 
-@export var max_speed_on_air:int =85
+@export var max_speed_on_air:int =75
+const speed_on_air:= 75
+var current_horizontal_velocity:int
 @export var state_sprite:Sprite2D
 
 var difference_waiting:bool = false
@@ -17,6 +19,7 @@ signal can_be_override
 func initialize():
 	super()
 	
+	#max_speed_on_air =85
 	state_sprite.frame = 0
 	core.body.velocity.y = 0
 	
@@ -28,6 +31,8 @@ func can_be_override_checker():
 	return !lambda_time()<full_time/3
 	
 func enter():
+	current_horizontal_velocity = int(core.body.velocity.x)
+	max_speed_on_air = max(current_horizontal_velocity,max_speed_on_air)
 	super()
 	jump()
 	is_jump_already_released()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://clfgrva2huq40"]
+[gd_scene load_steps=85 format=3 uid="uid://clfgrva2huq40"]
 
 [ext_resource type="Script" uid="uid://i87yeblqw7wt" path="res://Entities/Player_Aru/Player_Entities/player_animator.gd" id="1_ict5h"]
 [ext_resource type="Script" uid="uid://bh6tchiutu1w7" path="res://Entities/Player_Aru/player_camera.gd" id="1_yxsfr"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://dsk875ytf15xl" path="res://Entities/Player_Aru/Player_States/Ground_Control/On_Edge/No_Girl-on_edge2.png" id="27_5srs5"]
 [ext_resource type="Script" uid="uid://c0n0glhn765iw" path="res://Entities/Player_Aru/Player_States/Air_Control/Air_Control_TransitionStates/fast_fall_recovery.gd" id="28_4chhv"]
 [ext_resource type="Texture2D" uid="uid://u8cq47g86oo1" path="res://Entities/Player_Aru/Player_States/Ground_Control/Idle/No_girl/No_blink_Spritesheet3.png" id="29_1bea2"]
+[ext_resource type="Script" uid="uid://duwjidny5evnr" path="res://Entities/Player_Aru/Player_States/Holding_Girl/Holding_Girl.gd" id="31_h72mf"]
 [ext_resource type="Texture2D" uid="uid://cfayjuq2ntxgq" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/On_air_Attack_to_Fall.png" id="34_u85lk"]
 [ext_resource type="Texture2D" uid="uid://d31vbwb34yd6c" path="res://Entities/Player_Aru/Player_States/Air_Control/Jump/FastFall-Spritesheet.png" id="36_qj3yi"]
 [ext_resource type="Texture2D" uid="uid://drkoyiwcpsara" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/Big_Fall_Recovery.png" id="43_ca7hs"]
@@ -769,7 +770,7 @@ tracks/0/path = NodePath("Sprites/Animations/No_Girl-RunCycle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.24, 0.35999998, 0.48, 0.59999996),
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.36, 0.48, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
@@ -799,7 +800,7 @@ tracks/0/path = NodePath("Sprites/Animations/No_Girl-RunCycle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.24, 0.35999998, 0.48, 0.59999996),
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.36, 0.48, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
@@ -840,7 +841,7 @@ tracks/1/path = NodePath("Sprites/Animations/No_Girl-SwordGroundedAttack1:frame"
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.12, 0.24, 0.35999998, 0.48),
+"times": PackedFloat32Array(0, 0.07, 0.12, 0.24, 0.36, 0.48),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
@@ -869,7 +870,7 @@ tracks/1/path = NodePath("Sprites/Animations/No_Girl-SwordGroundedAttack1:frame"
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.12, 0.24, 0.35999998, 0.48),
+"times": PackedFloat32Array(0, 0.07, 0.12, 0.24, 0.36, 0.48),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
@@ -899,7 +900,7 @@ tracks/1/path = NodePath("Sprites/Animations/No_Girl-WalkCycle:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16, 0.32, 0.48, 0.64, 0.79999995),
+"times": PackedFloat32Array(0, 0.16, 0.32, 0.48, 0.64, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
@@ -929,7 +930,7 @@ tracks/1/path = NodePath("Sprites/Animations/No_Girl-WalkCycle:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16, 0.32, 0.48, 0.64, 0.79999995),
+"times": PackedFloat32Array(0, 0.16, 0.32, 0.48, 0.64, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
@@ -1113,7 +1114,7 @@ tracks/0/path = NodePath("Sprites/Transitions/No_Girl-Fast_Fall_Recovery:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.89940625, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.899406, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -1207,7 +1208,7 @@ tracks/1/path = NodePath("Sprites/Transitions/Transition_To_Jump:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0009999999),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -1235,7 +1236,7 @@ tracks/1/path = NodePath("Sprites/Transitions/Transition_To_Jump:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0009999999),
+"times": PackedFloat32Array(0.001),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -1549,6 +1550,23 @@ script = ExtResource("19_52va6")
 script = ExtResource("20_occge")
 
 [node name="Holding_Girl" type="Node" parent="CharacterBody2D/Player_Core"]
+script = ExtResource("31_h72mf")
+
+[node name="Ground_Control" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl"]
+
+[node name="Idle" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Ground_Control"]
+
+[node name="Walk" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Ground_Control"]
+
+[node name="Run" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Ground_Control"]
+
+[node name="Air_Control" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl"]
+
+[node name="Jump" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Air_Control"]
+
+[node name="Fall" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Air_Control"]
+
+[node name="Gliding" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Air_Control"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0.5, -12)
@@ -1559,13 +1577,13 @@ shape = SubResource("RectangleShape2D_yxsfr")
 [node name="Animations" type="Node2D" parent="CharacterBody2D/Sprites"]
 
 [node name="No_Girl-Idle" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations"]
-visible = false
 position = Vector2(0, -20)
 texture = ExtResource("29_1bea2")
 hframes = 7
 
 [node name="No_Girl-WalkCycle" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations"]
-position = Vector2(0, -20)
+visible = false
+position = Vector2(0, -19)
 texture = ExtResource("11_qdeho")
 hframes = 6
 

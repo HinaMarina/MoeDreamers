@@ -38,7 +38,7 @@ func do(delta):
 
 func physics_do(delta):
 	super(delta)
-	core.body.velocity.x = body_side_velocity/4
+	core.body.velocity.x = body_side_velocity/3
 	#core.body.velocity.y = 0
 	core.body.move_and_slide()
 

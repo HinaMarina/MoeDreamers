@@ -7,14 +7,14 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hj1c0"]
 shader = ExtResource("1_65p5r")
 shader_parameter/chromatic_aberration_ratio = 1.0
-shader_parameter/chromatic_aberration = false
-shader_parameter/enable_grain = false
+shader_parameter/chromatic_aberration = true
+shader_parameter/enable_grain = true
 shader_parameter/rgb_grid = true
 shader_parameter/vignette = true
 shader_parameter/vignette_size = 0.2
 shader_parameter/vignette_smoothness = 0.1
 shader_parameter/rgb_grid_subdivision = 3
-shader_parameter/scanline_count = 216.00001026
+shader_parameter/scanline_count = 216.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_761t5"]
 shader = ExtResource("2_b2scl")
@@ -34,7 +34,6 @@ shader_parameter/bloom_blur_subdivisions = 8
 [node name="CRT" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CRT"]
-visible = false
 material = SubResource("ShaderMaterial_hj1c0")
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +42,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Blur" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Blur"]
 material = SubResource("ShaderMaterial_761t5")
@@ -54,10 +52,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Bloom" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Bloom"]
-visible = false
 material = SubResource("ShaderMaterial_x44r4")
 anchors_preset = 15
 anchor_right = 1.0

@@ -13,11 +13,16 @@ config_version=5
 config/name="MoeDreamers"
 run/main_scene="uid://bo6s5wj8g6ogs"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerManager="*res://Global/Managers/Player_Manager.gd"
 
 [display]
 
-window/size/viewport_width=290
+window/size/viewport_width=280
 window/size/viewport_height=180
 window/size/mode=4
 window/stretch/mode="canvas_items"
@@ -54,10 +59,16 @@ attack={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="LilGirl"
+2d_physics/layer_8="Ground"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 gl_compatibility/fallback_to_angle=false
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.12989566, 0.32514927, 0.42713103, 1)
+environment/defaults/default_clear_color=Color(0.129896, 0.325149, 0.427131, 1)

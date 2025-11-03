@@ -53,6 +53,10 @@ func select_state():
 		return
 		
 	if Ground_to_Air.is_active() && Ground_to_Air.is_complete:
+		if Ground_Control.last_before_completing == Ground_Control.Run:
+			Air_Control.was_running  = true
+		else:
+			Air_Control.was_running = false
 		_machine.set_state(Air_Control)
 		return
 	

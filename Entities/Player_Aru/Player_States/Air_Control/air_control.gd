@@ -6,7 +6,7 @@ extends PlayerState
 @export var Fall:PlayerState
 @export var Fast_Fall:PlayerState
 
-@export var coyote_time :=0.05
+@export var coyote_time :=0.1
 @export var jump_buffer:= 0.1
 @export var jump_pressed:float = 0.0
 
@@ -14,6 +14,9 @@ extends PlayerState
 @export var Air_Attack_to_Fall:TransitionState
 @export var Fast_Fall_Recovery:TransitionState
 var already_jumped:bool = true
+
+var was_running:bool
+
 signal max_fall_vel_achieved()
 
 func _ready():
@@ -23,6 +26,14 @@ func _ready():
 
 
 func enter():
+	
+	if was_running:
+		Jump.max_speed_on_air = Jump.speed_on_air + 20
+		Fall.max_speed_on_air = Fall.speed_on_air + 20
+	else:
+		Jump.max_speed_on_air = Jump.speed_on_air
+		Fall.max_speed_on_air = Fall.speed_on_air
+		
 	super()
 	already_jumped = false
 	set_air_state()
@@ -52,6 +63,7 @@ func set_air_state():
 	
 	if core.body.is_on_floor():
 		_machine.set_state(Jump)
+		already_jumped = true
 
 		
 	if Input.is_action_just_pressed("jump") && core.body.is_on_floor():
@@ -67,7 +79,6 @@ func coyote_time_checker():
 	if !Fall.is_active():
 		return
 	if lambda_time() < coyote_time && Input.is_action_just_pressed("jump") && !already_jumped:
-	
 		_machine.set_state(Jump)
 		already_jumped = true
 
@@ -99,8 +110,10 @@ func do(delta):
 		return
 	if Fast_Fall_Recovery.is_active() && Fast_Fall_Recovery.is_complete:
 		complete()
+	
 	if Fast_Fall.is_active() && Fast_Fall.is_complete:
 		_machine.set_state(Fast_Fall_Recovery)
+
 	if Air_Attack_to_Fall.is_active() && !Air_Attack_to_Fall.is_complete:
 		return
 	if Air_Attack_to_Fall.is_active() && Air_Attack_to_Fall.is_complete:
@@ -121,6 +134,8 @@ func do(delta):
 	
 	
 	if core.player_core.is_inputting_attack(): #handles overriding the jump PlayerState with the attack
+		if Fast_Fall.is_active() || Fast_Fall_Recovery.is_active():
+			return
 		if Jump.is_active() && !Jump.can_be_override_checker():
 			await Jump.can_be_override
 		_machine.set_state(Air_Attack)

@@ -105,6 +105,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		_machine.set_state(Run)
 	
 func on_player_turned_backwards():
+	if Stop_Running.is_active():
+		await Stop_Running.state_completed
+		_machine.set_state(Turning_Backwards)
 	if is_active():
 		_machine.set_state(Turning_Backwards)
 		

@@ -67,7 +67,6 @@ func _process(delta: float) -> void:
 		
 func _physics_process(delta: float) -> void:
 	
-	
 	if main_machine.current_state != null:
 		main_machine.current_state.physics_do(delta)
 
