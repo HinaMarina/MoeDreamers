@@ -6,6 +6,7 @@ extends PlayerState
 @export var Air_to_Ground:TransitionState
 
 func enter():
+	
 	super()
 	if core.body.is_on_floor():
 		_machine.set_state(Ground_Control)

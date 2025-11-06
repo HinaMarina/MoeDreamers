@@ -15,11 +15,11 @@ var last_before_completing:PlayerState
 
 
 func enter():
-	
+	super()
 	if last_before_completing==Run && core.body.velocity.x != 0:
 		_machine.set_state(Run)
 		last_before_completing = null
-	super()
+	
 
 func _ready():
 	super()
@@ -44,7 +44,8 @@ func select_state():
 		
 	
 		return
-		
+	if Idle.is_active() && core.player_core.xInput!=0:
+		_machine.set_state(Walk)
 	if Ground_Attack_Recover.is_active() && !Ground_Attack_Recover.is_complete:
 		return
 			

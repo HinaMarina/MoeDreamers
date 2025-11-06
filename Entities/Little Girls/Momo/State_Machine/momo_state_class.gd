@@ -5,12 +5,12 @@ class_name MomoState extends Node
 var is_complete:bool
 var start_time:float
 
-var all_child_states:Array[CameraState]
-var parent_state:CameraState
+var all_child_states:Array[MomoState]
+var parent_state:MomoState
 @export var clear_before_override:bool=false
 
 signal tree_is_set()
-signal state_completed(Camera_State:CameraState)
+signal state_completed(Momo_State:MomoState)
 
 
 
@@ -23,13 +23,13 @@ func _ready():
 			all_child_states.append(each)
 			each.set_parent(self)
 
-func set_core(_core:CameraCore):
+func set_core(_core:MomoCore):
 	core = _core
 	
-func set_parent(parent:CameraState):
+func set_parent(parent:MomoState):
 	parent_state = parent
 	
-func set_tree(new_core:CameraCore):
+func set_tree(new_core:MomoCore):
 	set_core(new_core)
 	for each in all_child_states:
 		each.set_core(new_core)

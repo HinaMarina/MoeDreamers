@@ -7,6 +7,7 @@ extends PlayerState
 var blinked:bool = false
 
 func enter():
+	super()
 	sets_animation_direction()
 
 func do(delta):

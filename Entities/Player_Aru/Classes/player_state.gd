@@ -44,7 +44,8 @@ func lambda_time():
 	return (Time.get_ticks_msec() - start_time)/1000
 	
 func enter():
-
+	if _machine.current_state!=null:
+		_machine.current_state=null
 	#print(self)
 	is_complete = false
 	start_time = Time.get_ticks_msec()
@@ -56,7 +57,7 @@ func initialize():
 
 	
 func complete():
-			
+	_machine.last_state = _machine.current_state
 	if _machine.current_state != null:
 		_machine.current_state.complete()
 		await _machine.current_state.state_completed
@@ -66,7 +67,6 @@ func complete():
 	
 func do(delta):
 	
-	#print(self,' ',_machine.current_state)
 	if is_complete:
 		return
 	if _machine.current_state != null:

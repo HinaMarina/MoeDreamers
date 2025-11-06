@@ -1,5 +1,6 @@
 class_name PlayerCore extends PlayerStateCore
 var is_holding_girl:bool = false
+var current_girl_being_hold:String
 
 @onready var main_machine:PlayerStateMachine
 
@@ -19,9 +20,14 @@ var last_action:String
 var double_tap_time_limit:float = 0.3
 var double_tap_time:float
 
+
+
 signal turned_backwards()
 
 func _ready():
+	PlayerManager.girl_picked.connect(hold_girl)
+	PlayerManager.girl_released.connect(drop_girl)
+	
 	input_vector = Vector2(0,1)
 	main_machine = PlayerStateMachine.new()
 	main_machine.machine_owner = self
@@ -102,10 +108,19 @@ func release_movement():
 	can_player_move = true
 	
 
-func hold_girl():
+func hold_girl(girl_name:String):
+	#print('holdou ' + girl_name)
+	current_girl_being_hold = girl_name
 	is_holding_girl = true
 	main_machine.set_state(Holding_Girl,true)
 
 func drop_girl():
 	is_holding_girl = false
 	main_machine.set_state(Not_Holding_Girl,true)
+	LilGirlsManager.drop_girl(current_girl_being_hold,body.global_position - input_vector*20)
+	current_girl_being_hold = ""
+
+func _input(event: InputEvent) -> void:
+	if is_holding_girl:
+		if Input.is_action_just_pressed("pick_girl"):
+			drop_girl()

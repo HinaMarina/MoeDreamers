@@ -42,7 +42,7 @@ func enter():
 func initialize():
 	super()
 	#
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	#this piece of code handles overriding the fall transition if you wanna jump again
 	#if (core.animator.get_current_animation() == "Transitions/Fall_Transition_E"
 	#|| core.animator.get_current_animation() == "Transitions/Fall_Transition_W"):
