@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://clfgrva2huq40"]
+[gd_scene load_steps=103 format=3 uid="uid://clfgrva2huq40"]
 
 [ext_resource type="Script" uid="uid://i87yeblqw7wt" path="res://Entities/Player_Aru/Player_Entities/player_animator.gd" id="1_ict5h"]
 [ext_resource type="Script" uid="uid://bh6tchiutu1w7" path="res://Entities/Player_Aru/player_camera.gd" id="1_yxsfr"]
@@ -46,9 +46,15 @@
 [ext_resource type="Script" uid="uid://b4u710yh1kdle" path="res://Entities/Player_Aru/Player_States/Holding_Girl/Ground_Control/ground_control.gd" id="33_olb6d"]
 [ext_resource type="Script" uid="uid://bxpdhjag1tvld" path="res://Entities/Player_Aru/Player_States/Holding_Girl/Ground_Control/Idle/idle.gd" id="34_fgkf8"]
 [ext_resource type="Texture2D" uid="uid://cfayjuq2ntxgq" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/On_air_Attack_to_Fall.png" id="34_u85lk"]
+[ext_resource type="Script" uid="uid://b8ucwa1yornch" path="res://Entities/Player_Aru/Player_States/Holding_Girl/Ground_Control/Walk/walk.gd" id="35_yvr6w"]
+[ext_resource type="Script" uid="uid://gteqe22nf83j" path="res://Entities/Player_Aru/Player_States/Holding_Girl/Air_Control/Jump/jump.gd" id="36_fesbh"]
+[ext_resource type="Script" uid="uid://nr5qe51y7jh7" path="res://Entities/Player_Aru/Player_States/Holding_Girl/Air_Control/air_control.gd" id="36_lom7d"]
 [ext_resource type="Texture2D" uid="uid://d31vbwb34yd6c" path="res://Entities/Player_Aru/Player_States/Air_Control/Jump/FastFall-Spritesheet.png" id="36_qj3yi"]
+[ext_resource type="Script" uid="uid://bj2syyt7ok788" path="res://Entities/Player_Aru/Player_States/Holding_Girl/Air_Control/Fall/fall.gd" id="37_ntymc"]
 [ext_resource type="Texture2D" uid="uid://cli7mfmlrf0yi" path="res://Entities/Player_Aru/Player_States/Holding_Girl/Ground_Control/Idle/Momo/Idle_SpriteSheet.png" id="41_idrlh"]
 [ext_resource type="Texture2D" uid="uid://drkoyiwcpsara" path="res://Entities/Player_Aru/Player_States/AnimationTransitions/Big_Fall_Recovery.png" id="43_ca7hs"]
+[ext_resource type="Texture2D" uid="uid://d3pxfbwk352oi" path="res://Entities/Player_Aru/Player_States/Holding_Girl/Ground_Control/Walk/Momo/Walking_SpriteSheet.png" id="44_frx8g"]
+[ext_resource type="Texture2D" uid="uid://cukb081jf2s1r" path="res://Entities/Player_Aru/Player_States/Holding_Girl/Air_Control/Momo/Jumping-Sheet.png" id="45_b7p60"]
 
 [sub_resource type="Animation" id="Animation_rkx4m"]
 length = 0.001
@@ -424,6 +430,54 @@ tracks/30/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-Walking:frame")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-Walking:flip_h")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall:frame")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall:flip_h")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f25kn"]
 _data = {
@@ -489,10 +543,189 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_frx8g"]
+length = 1.2
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-Walking:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-Walking:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_b7p60"]
+resource_name = "Momo_Walking_W"
+length = 1.2
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-Walking:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-Walking:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fesbh"]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.40154293),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ntymc"]
+resource_name = "Momo_Jump_W"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.40154293),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lom7d"]
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2050432, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7s34x"]
+resource_name = "Momo_Fall_W"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2050432, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rnkoh"]
 _data = {
+&"Momo_Fall_E": SubResource("Animation_lom7d"),
+&"Momo_Fall_W": SubResource("Animation_7s34x"),
 &"Momo_Idle_E": SubResource("Animation_idrlh"),
-&"Momo_Idle_W": SubResource("Animation_fgkf8")
+&"Momo_Idle_W": SubResource("Animation_fgkf8"),
+&"Momo_Jump_E": SubResource("Animation_fesbh"),
+&"Momo_Jump_W": SubResource("Animation_ntymc"),
+&"Momo_Walking_E": SubResource("Animation_frx8g"),
+&"Momo_Walking_W": SubResource("Animation_b7p60")
 }
 
 [sub_resource type="Animation" id="Animation_qj3yi"]
@@ -1636,26 +1869,41 @@ script = ExtResource("19_52va6")
 [node name="Air_To_Ground" type="Node" parent="CharacterBody2D/Player_Core/Not_Holding_Girl"]
 script = ExtResource("20_occge")
 
-[node name="Holding_Girl" type="Node" parent="CharacterBody2D/Player_Core" node_paths=PackedStringArray("Ground_Control")]
+[node name="Holding_Girl" type="Node" parent="CharacterBody2D/Player_Core" node_paths=PackedStringArray("Air_Control", "Ground_Control")]
 script = ExtResource("31_h72mf")
+Air_Control = NodePath("Air_Control")
 Ground_Control = NodePath("Ground_Control")
 
-[node name="Ground_Control" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl" node_paths=PackedStringArray("Idle")]
+[node name="Ground_Control" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl" node_paths=PackedStringArray("Idle", "Walk")]
 script = ExtResource("33_olb6d")
 Idle = NodePath("Idle")
+Walk = NodePath("Walk")
 
 [node name="Idle" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Ground_Control"]
 script = ExtResource("34_fgkf8")
 
-[node name="Walk" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Ground_Control"]
+[node name="Walk" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Ground_Control" node_paths=PackedStringArray("state_sprite")]
+script = ExtResource("35_yvr6w")
+state_sprite = NodePath("../../../../Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-Walking")
 
 [node name="Run" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Ground_Control"]
 
-[node name="Air_Control" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl"]
+[node name="Air_Control" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl" node_paths=PackedStringArray("Jump", "Fall")]
+script = ExtResource("36_lom7d")
+Jump = NodePath("Jump")
+Fall = NodePath("Fall")
 
-[node name="Jump" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Air_Control"]
+[node name="Jump" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
+script = ExtResource("36_fesbh")
+jump_height = 48.0
+peak_time = 0.4
+state_sprite = NodePath("../../../../Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall")
 
-[node name="Fall" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Air_Control"]
+[node name="Fall" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Air_Control" node_paths=PackedStringArray("state_sprite")]
+script = ExtResource("37_ntymc")
+jump_height = 56.0
+fall_time = 0.35
+state_sprite = NodePath("../../../../Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo-JumpFall")
 
 [node name="Gliding" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Air_Control"]
 
@@ -1720,8 +1968,20 @@ hframes = 3
 [node name="Momo" type="Node2D" parent="CharacterBody2D/Sprites/Animations/WithGirl - Sprites"]
 
 [node name="WithGirl_Momo-Idle" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations/WithGirl - Sprites/Momo"]
-position = Vector2(-4, -19)
+visible = false
+position = Vector2(-2, -19)
 texture = ExtResource("41_idrlh")
+hframes = 7
+
+[node name="WithGirl_Momo-Walking" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations/WithGirl - Sprites/Momo"]
+visible = false
+position = Vector2(0, -19)
+texture = ExtResource("44_frx8g")
+hframes = 6
+
+[node name="WithGirl_Momo-JumpFall" type="Sprite2D" parent="CharacterBody2D/Sprites/Animations/WithGirl - Sprites/Momo"]
+position = Vector2(-1, -27)
+texture = ExtResource("45_b7p60")
 hframes = 7
 
 [node name="Transitions" type="Node2D" parent="CharacterBody2D/Sprites"]
