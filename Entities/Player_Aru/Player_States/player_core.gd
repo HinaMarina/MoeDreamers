@@ -60,6 +60,7 @@ func updates_input_vector():
 
 	
 func _process(delta: float) -> void:
+
 	#print(body.velocity)
 	#print(animator.transitioning)
 	double_tap_time -= delta
@@ -112,6 +113,7 @@ func hold_girl(girl_name:String):
 	#print('holdou ' + girl_name)
 	current_girl_being_hold = girl_name
 	is_holding_girl = true
+	#Not_Holding_Girl.complete()
 	main_machine.set_state(Holding_Girl,true)
 
 func drop_girl():

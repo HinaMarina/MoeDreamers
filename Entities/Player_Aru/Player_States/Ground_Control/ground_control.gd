@@ -24,10 +24,11 @@ func enter():
 func _ready():
 	super()
 	
-	
+
 	await tree_is_set ## Everything after this will be processed after PlayerState tree is set
-	
 	core.player_core.turned_backwards.connect(on_player_turned_backwards)
+
+	
 
 	
 func select_state():
@@ -106,6 +107,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_machine.set_state(Run)
 	
 func on_player_turned_backwards():
+	if !is_active():
+		return
 	if Stop_Running.is_active():
 		await Stop_Running.state_completed
 		_machine.set_state(Turning_Backwards)

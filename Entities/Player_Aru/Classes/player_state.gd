@@ -9,7 +9,6 @@ var all_child_states:Array[PlayerState]
 var all_transition_states:Array[TransitionState]
 var all_non_transitional_states : Array[PlayerState]
 var parent_state:PlayerState
-@export var clear_before_override:bool=false
 
 signal tree_is_set()
 signal state_completed(PlayerState:PlayerState)
@@ -46,7 +45,6 @@ func lambda_time():
 func enter():
 	if _machine.current_state!=null:
 		_machine.current_state=null
-	#print(self)
 	is_complete = false
 	start_time = Time.get_ticks_msec()
 	#if _machine.current_state!= null:
@@ -84,8 +82,10 @@ func exit():
 		complete()
 	
 func is_active():
+	if parent_state == null:
+		return (core.player_core.main_machine.current_state == self)
 	if parent_state != null:
-		return (parent_state._machine.current_state == self)
+		return (parent_state._machine.current_state == self && parent_state.is_active())
 		
 func clear_machine():
 	_machine.current_state = null

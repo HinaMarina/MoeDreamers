@@ -16,7 +16,8 @@ signal max_vel_achieved()
 func initialize():
 	super()
 	state_sprite.flip_h = core.player_core.input_vector.x < 0
-	state_sprite.frame = 3
+	#state_sprite.frame = 0
+
 	#max_speed_on_air = 85
 
 func get_gravity():
