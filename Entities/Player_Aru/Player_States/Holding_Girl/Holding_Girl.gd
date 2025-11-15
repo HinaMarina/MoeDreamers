@@ -9,6 +9,7 @@ func enter():
 	if core.body.is_on_floor():
 		_machine.set_state(Ground_Control)
 	else:
+		Ground_Control.complete()
 		_machine.set_state(Air_Control)
 
 func select_state():

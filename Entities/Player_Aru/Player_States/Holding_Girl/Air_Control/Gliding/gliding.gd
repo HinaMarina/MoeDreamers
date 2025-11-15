@@ -8,7 +8,7 @@ extends PlayerState
 const speed_on_air:= 75
 
 var current_horizontal_velocity:int
-@export var max_fall_speed:int = 450
+@export var max_fall_speed:int = 100
 @export var state_sprite:Sprite2D
 
 signal max_vel_achieved()
@@ -16,21 +16,25 @@ signal max_vel_achieved()
 func initialize():
 	super()
 	state_sprite.flip_h = core.player_core.input_vector.x < 0
-	#state_sprite.frame = 0
-
+	state_sprite.frame = 3
 	#max_speed_on_air = 85
 
 func get_gravity():
 	return fall_gravity
-
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if is_active() && Input.is_action_just_released("glide"):
+		complete()
+		
 func enter():
-	current_horizontal_velocity = abs(int(core.body.velocity.x)) - 15
+	current_horizontal_velocity = abs(int(core.body.velocity.x))
 	max_speed_on_air = max(current_horizontal_velocity,speed_on_air)
 	super()
 	if core.body.is_on_floor():
 		complete()
 	
 func physics_do(delta):
+	
 	super(delta)
 	core.body.velocity.y += get_gravity()*delta
 	core.body.velocity.y = clamp(core.body.velocity.y,-max_fall_speed,max_fall_speed)
@@ -38,7 +42,7 @@ func physics_do(delta):
 	core.body.move_and_slide()
 	
 func do(delta):
-	if core.body.velocity.y == 450:
+	if core.body.velocity.y == max_fall_speed:
 		max_vel_achieved.emit()
 	if core.body.is_on_floor():
 		complete()
@@ -47,6 +51,6 @@ func do(delta):
 	
 func sets_animation():
 	if core.player_core.input_vector.x >=0:
-		core.animator.play("Holding_Girl/Momo_Fall_E")
+		core.animator.play("Holding_Girl/Momo_Gliding_E")
 	else:
-		core.animator.play("Holding_Girl/Momo_Fall_W")
+		core.animator.play("Holding_Girl/Momo_Gliding_W")

@@ -60,7 +60,6 @@ func updates_input_vector():
 
 	
 func _process(delta: float) -> void:
-
 	#print(body.velocity)
 	#print(animator.transitioning)
 	double_tap_time -= delta

@@ -23,8 +23,8 @@ func get_gravity():
 	return fall_gravity
 
 func enter():
-	current_horizontal_velocity = int(core.body.velocity.x)
-	max_speed_on_air = max(current_horizontal_velocity,max_speed_on_air)
+	current_horizontal_velocity = abs(int(core.body.velocity.x))
+	max_speed_on_air = max(current_horizontal_velocity,speed_on_air)
 	super()
 	if core.body.is_on_floor():
 		complete()

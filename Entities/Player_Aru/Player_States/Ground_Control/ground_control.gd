@@ -101,6 +101,7 @@ func do(delta):
 		complete()
 
 func _unhandled_input(event: InputEvent) -> void:
+	
 	if _machine.current_state == Ground_Attack:
 		return
 	elif core.player_core.double_tapped_checker(event):

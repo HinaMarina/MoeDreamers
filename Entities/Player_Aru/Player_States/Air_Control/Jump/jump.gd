@@ -31,8 +31,8 @@ func can_be_override_checker():
 	return !lambda_time()<full_time/3
 	
 func enter():
-	current_horizontal_velocity = int(core.body.velocity.x)
-	max_speed_on_air = max(current_horizontal_velocity,max_speed_on_air)
+	current_horizontal_velocity = abs(int(core.body.velocity.x))
+	max_speed_on_air = max(current_horizontal_velocity,speed_on_air)
 	super()
 	jump()
 	is_jump_already_released()
