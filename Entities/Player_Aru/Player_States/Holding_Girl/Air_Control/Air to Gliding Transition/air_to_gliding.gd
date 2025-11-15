@@ -1,6 +1,10 @@
 extends TransitionState
 
+@export var Statesprite:Sprite2D
 
+func enter():
+	Statesprite.frame = 0
+	super()
 
 func play_transition():
 	if core.player_core.input_vector.x >=0:

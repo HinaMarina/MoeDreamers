@@ -2151,8 +2151,9 @@ fall_time = 1.0
 max_fall_speed = 50
 state_sprite = NodePath("../../../../Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo_Gliding")
 
-[node name="Air_To_Gliding" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Air_Control"]
+[node name="Air_To_Gliding" type="Node" parent="CharacterBody2D/Player_Core/Holding_Girl/Air_Control" node_paths=PackedStringArray("Statesprite")]
 script = ExtResource("40_2sdea")
+Statesprite = NodePath("../../../../Sprites/Animations/WithGirl - Sprites/Momo/WithGirl_Momo_Gliding")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0.5, -12)
